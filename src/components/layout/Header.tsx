@@ -5,9 +5,6 @@ export default function Header() {
     <header className="border-b border-gray-100 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-3xl">
-          <p className="text-sm font-medium text-syracuse-navy tracking-wide uppercase mb-3">
-            Sport Analytics · May 2026
-          </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-2">
             Quantifying Market Greeks in Soccer Betting
           </h1>

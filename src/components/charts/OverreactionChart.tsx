@@ -11,6 +11,7 @@ import {
 } from 'recharts'
 import type { TooltipProps } from 'recharts'
 import type { OverreactionRow } from '../../types'
+import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL } from '../../lib/chartTheme'
 
 const COLORS = ['#9CA3AF', '#000E54', '#F76900']
 
@@ -18,15 +19,11 @@ interface ChartPoint {
   group: string
   median_overshoot: number
   error: [number, number]
-  n: number
-  pct_positive: number
-  ci_lo: number
-  ci_hi: number
+  n: number; pct_positive: number
+  ci_lo: number; ci_hi: number
 }
 
-interface Props {
-  data: OverreactionRow[]
-}
+interface Props { data: OverreactionRow[] }
 
 export default function OverreactionChart({ data }: Props) {
   const chartData: ChartPoint[] = data.map(d => ({
@@ -47,19 +44,19 @@ export default function OverreactionChart({ data }: Props) {
     const pt = chartData.find(d => d.group === label)
     if (!pt) return null
     return (
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm px-3 py-2.5 text-xs min-w-[195px]">
+      <div className="bg-white border border-[rgba(0,14,84,0.3)] rounded-lg shadow-md px-3 py-2.5 text-xs min-w-[195px]">
         <p className="font-semibold text-gray-800 mb-1.5">{pt.group}</p>
-        <p className="text-gray-500 mb-1">n = {pt.n}</p>
+        <p className="mb-1" style={{ color: 'rgba(0,14,84,0.45)' }}>n = {pt.n}</p>
         <p>
           Median overshoot:{' '}
-          <span className="font-mono font-semibold text-syracuse-navy">
+          <span className="font-mono font-semibold" style={{ color: '#000E54' }}>
             {pt.median_overshoot.toFixed(3)}
           </span>
         </p>
-        <p className="text-gray-500 mt-0.5">
+        <p className="mt-0.5" style={{ color: 'rgba(0,14,84,0.5)' }}>
           95% CI: [{pt.ci_lo.toFixed(3)}, {pt.ci_hi.toFixed(3)}]
         </p>
-        <p className="text-gray-500 mt-0.5">
+        <p className="mt-0.5" style={{ color: 'rgba(0,14,84,0.5)' }}>
           % positive: {pt.pct_positive.toFixed(1)}%
         </p>
       </div>
@@ -68,44 +65,31 @@ export default function OverreactionChart({ data }: Props) {
 
   return (
     <div className="overflow-x-auto -mx-1">
-      <div style={{ minWidth: 340 }}>
-        <ResponsiveContainer width="100%" height={260}>
+      <div style={{ minWidth: 340 }} className="h-[260px] sm:h-[360px]">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} margin={{ top: 8, right: 28, bottom: 8, left: 16 }} barCategoryGap="40%">
-            <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID_STROKE} vertical={false} />
             <XAxis
               dataKey="group"
-              tick={{ fontSize: 11, fill: '#9CA3AF' }}
+              tick={TICK_STYLE}
               tickLine={false}
-              axisLine={{ stroke: '#E5E7EB' }}
+              axisLine={AXIS_LINE}
             />
             <YAxis
               domain={[0, 0.4]}
               tickFormatter={(v: number) => v.toFixed(2)}
-              tick={{ fontSize: 11, fill: '#9CA3AF' }}
+              tick={TICK_STYLE}
               tickLine={false}
               axisLine={false}
               width={40}
-              label={{
-                value: 'Median overshoot',
-                angle: -90,
-                position: 'insideLeft',
-                offset: 4,
-                fontSize: 11,
-                fill: '#9CA3AF',
-              }}
+              label={{ value: 'Median overshoot', angle: -90, position: 'insideLeft', offset: 4, fontSize: 11, fill: LABEL_FILL }}
             />
-            <Tooltip content={tooltipContent} cursor={{ fill: '#F9FAFB' }} />
+            <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(0,14,84,0.04)' }} />
             <Bar dataKey="median_overshoot" radius={[4, 4, 0, 0]} maxBarSize={80}>
               {chartData.map((_, i) => (
                 <Cell key={i} fill={COLORS[i] ?? '#9CA3AF'} />
               ))}
-              <ErrorBar
-                dataKey="error"
-                width={8}
-                strokeWidth={1.5}
-                stroke="#374151"
-                direction="y"
-              />
+              <ErrorBar dataKey="error" width={8} strokeWidth={1.5} stroke="#374151" direction="y" />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

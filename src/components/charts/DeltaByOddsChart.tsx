@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 import type { TooltipProps } from 'recharts'
 import type { DeltaOddsBinRow } from '../../types'
+import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL, CURSOR_LINE } from '../../lib/chartTheme'
 
 const C_ORANGE = '#F76900'
 const C_NAVY   = '#000E54'
@@ -19,9 +20,7 @@ interface ChartPoint extends DeltaOddsBinRow {
   band_height: number
 }
 
-interface Props {
-  data: DeltaOddsBinRow[]
-}
+interface Props { data: DeltaOddsBinRow[] }
 
 export default function DeltaByOddsChart({ data }: Props) {
   const chartData: ChartPoint[] = data.map(d => ({
@@ -35,21 +34,18 @@ export default function DeltaByOddsChart({ data }: Props) {
     const pt = chartData.find(d => d.odds_bin === label)
     if (!pt) return null
     return (
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm px-3 py-2.5 text-xs min-w-[170px]">
+      <div className="bg-white border border-[rgba(0,14,84,0.3)] rounded-lg shadow-md px-3 py-2.5 text-xs min-w-[170px]">
         <p className="font-semibold text-gray-800 mb-1">Odds {label}</p>
-        <p className="text-gray-400 mb-2">n = {pt.n} events</p>
+        <p className="mb-2" style={{ color: 'rgba(0,14,84,0.45)' }}>n = {pt.n} events</p>
         <div className="space-y-0.5">
-          <p className="text-gray-500">
-            75th pct:{' '}
-            <span className="font-mono">{pt.p75.toFixed(3)}</span>
+          <p style={{ color: 'rgba(0,14,84,0.5)' }}>
+            75th pct: <span className="font-mono">{pt.p75.toFixed(3)}</span>
           </p>
           <p className="font-semibold" style={{ color: C_NAVY }}>
-            Median Δ:{' '}
-            <span className="font-mono">{pt.median_delta.toFixed(3)}</span>
+            Median Δ: <span className="font-mono">{pt.median_delta.toFixed(3)}</span>
           </p>
-          <p className="text-gray-500">
-            25th pct:{' '}
-            <span className="font-mono">{pt.p25.toFixed(3)}</span>
+          <p style={{ color: 'rgba(0,14,84,0.5)' }}>
+            25th pct: <span className="font-mono">{pt.p25.toFixed(3)}</span>
           </p>
         </div>
       </div>
@@ -58,41 +54,27 @@ export default function DeltaByOddsChart({ data }: Props) {
 
   return (
     <div className="overflow-x-auto -mx-1">
-      <div style={{ minWidth: 420 }}>
-        <ResponsiveContainer width="100%" height={320}>
+      <div style={{ minWidth: 420 }} className="h-[280px] sm:h-[400px]">
+        <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData} margin={{ top: 8, right: 28, bottom: 24, left: 16 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID_STROKE} vertical={false} />
             <XAxis
               dataKey="odds_bin"
-              tick={{ fontSize: 11, fill: '#9CA3AF' }}
+              tick={TICK_STYLE}
               tickLine={false}
-              axisLine={{ stroke: '#E5E7EB' }}
-              label={{
-                value: 'Pre-goal decimal odds',
-                position: 'insideBottom',
-                offset: -14,
-                fontSize: 11,
-                fill: '#9CA3AF',
-              }}
+              axisLine={AXIS_LINE}
+              label={{ value: 'Pre-goal decimal odds', position: 'insideBottom', offset: -14, fontSize: 11, fill: LABEL_FILL }}
             />
             <YAxis
               domain={[0, 1.0]}
               tickFormatter={(v: number) => v.toFixed(2)}
-              tick={{ fontSize: 11, fill: '#9CA3AF' }}
+              tick={TICK_STYLE}
               tickLine={false}
               axisLine={false}
               width={40}
-              label={{
-                value: 'Median Δ',
-                angle: -90,
-                position: 'insideLeft',
-                offset: 4,
-                fontSize: 11,
-                fill: '#9CA3AF',
-              }}
+              label={{ value: 'Median Δ', angle: -90, position: 'insideLeft', offset: 4, fontSize: 11, fill: LABEL_FILL }}
             />
-            <Tooltip content={tooltipContent} cursor={{ stroke: '#E5E7EB', strokeWidth: 1 }} />
-            {/* IQR band: transparent base stacked under the colored band */}
+            <Tooltip content={tooltipContent} cursor={CURSOR_LINE} />
             <Area
               type="monotone"
               dataKey="band_base"
@@ -126,20 +108,16 @@ export default function DeltaByOddsChart({ data }: Props) {
             />
           </ComposedChart>
         </ResponsiveContainer>
-        {/* Manual IQR legend */}
-        <div className="flex items-center justify-center gap-5 mt-1 text-xs text-gray-400">
-          <span className="flex items-center gap-1.5">
-            <span className="inline-block w-5" style={{ borderTop: `2.5px solid ${C_ORANGE}` }} />
-            Median Δ
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span
-              className="inline-block w-5 h-3 rounded-sm"
-              style={{ background: C_ORANGE, opacity: 0.18 }}
-            />
-            IQR (25th–75th pct)
-          </span>
-        </div>
+      </div>
+      <div className="flex items-center justify-center gap-5 mt-1 text-xs" style={{ color: 'rgba(0,14,84,0.4)' }}>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-5" style={{ borderTop: `2.5px solid ${C_ORANGE}` }} />
+          Median Δ
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-5 h-3 rounded-sm" style={{ background: C_ORANGE, opacity: 0.18 }} />
+          IQR (25th–75th pct)
+        </span>
       </div>
     </div>
   )

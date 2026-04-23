@@ -1,0 +1,30 @@
+import Header from './components/layout/Header'
+import Nav from './components/layout/Nav'
+import FindingsGlance from './components/layout/FindingsGlance'
+import DeltaSection from './components/sections/DeltaSection'
+import ThetaSection from './components/sections/ThetaSection'
+import GammaSection from './components/sections/GammaSection'
+import MarketSection from './components/sections/MarketSection'
+
+const NAV_SECTIONS = [
+  { id: 'delta',  label: 'Delta'           },
+  { id: 'theta',  label: 'Theta'           },
+  { id: 'gamma',  label: 'Gamma'           },
+  { id: 'market', label: 'Market Behavior' },
+]
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <Nav sections={NAV_SECTIONS} />
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <FindingsGlance />
+        <DeltaSection />
+        <ThetaSection />
+        <GammaSection />
+        <MarketSection />
+      </main>
+    </div>
+  )
+}

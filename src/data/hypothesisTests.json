@@ -1,0 +1,41 @@
+[
+  {
+    "id": "H1",
+    "hypothesis": "H1: Underdog Δ > Favorite Δ",
+    "fav_n": 663,
+    "und_n": 103,
+    "fav_median": 0.2623,
+    "und_median": 0.52766,
+    "ratio": 2.012,
+    "test": "Mann-Whitney U (one-tailed)",
+    "U": 53883.0,
+    "p_value": 4.7e-21,
+    "fav_CI_lo": 0.24684,
+    "fav_CI_hi": 0.27322,
+    "und_CI_lo": 0.48851,
+    "und_CI_hi": 0.56335
+  },
+  {
+    "id": "H2",
+    "hypothesis": "H2: Theta accelerates in scoreless period final third",
+    "group": "A_pure_00",
+    "n": 46,
+    "early_theta": 0.001788,
+    "late_theta": 0.008045,
+    "accel_ratio": 4.499,
+    "W": 1039.0,
+    "p_value": 4.1e-10
+  },
+  {
+    "id": "H3",
+    "hypothesis": "H3: Gamma peaks 75–90 min in tied matches",
+    "ratio": 2.666,
+    "test": "Mann-Whitney U (one-tailed)",
+    "U": 22367.0,
+    "p_value": 1.8e-34,
+    "early_n": 179,
+    "late_n": 139,
+    "early_median": 0.19099,
+    "late_median": 0.50922
+  }
+]

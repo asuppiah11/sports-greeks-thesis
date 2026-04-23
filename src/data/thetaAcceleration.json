@@ -1,0 +1,4 @@
+[
+  { "group": "A_pure_00",        "label": "Group A (Pure 0-0)",       "n": 46,  "early_theta": 0.001788, "late_theta": 0.008045, "accel_ratio": 4.499, "W": 1039,  "p_value": 0.0 },
+  { "group": "B_pre_first_goal", "label": "Group B (Pre-First Goal)", "n": 244, "early_theta": 0.001368, "late_theta": 0.004566, "accel_ratio": 3.339, "W": 23164, "p_value": 0.0 }
+]

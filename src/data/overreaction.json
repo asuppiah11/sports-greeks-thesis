@@ -1,0 +1,5 @@
+[
+  { "group": "All goals",       "n": 800, "median_overshoot": 0.2785, "mean_overshoot": 0.5478, "ci_lo_95": 0.2498, "ci_hi_95": 0.2979, "wilcoxon_stat": 306153.0, "wilcoxon_p": 0.0, "pct_positive": 97.75   },
+  { "group": "Favorite scores", "n": 704, "median_overshoot": 0.3063, "mean_overshoot": 0.591,  "ci_lo_95": 0.2854, "ci_hi_95": 0.3318, "wilcoxon_stat": 236328.0, "wilcoxon_p": 0.0, "pct_positive": 97.5852 },
+  { "group": "Underdog scores", "n": 96,  "median_overshoot": 0.089,  "mean_overshoot": 0.2313, "ci_lo_95": 0.0626, "ci_hi_95": 0.124,  "wilcoxon_stat": 4560.0,   "wilcoxon_p": 0.0, "pct_positive": 98.9583 }
+]

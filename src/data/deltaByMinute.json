@@ -1,0 +1,15 @@
+[
+  { "min_bin": "0–15",  "fav_label": "Favorite",  "n": 55,  "median": 0.16276826621654206 },
+  { "min_bin": "15–30", "fav_label": "Favorite",  "n": 130, "median": 0.19603812832294315 },
+  { "min_bin": "15–30", "fav_label": "Underdog",  "n": 6,   "median": 0.49290713660792396 },
+  { "min_bin": "30–45", "fav_label": "Favorite",  "n": 115, "median": 0.23313814790717857 },
+  { "min_bin": "30–45", "fav_label": "Underdog",  "n": 4,   "median": 0.4096235905822986  },
+  { "min_bin": "45–60", "fav_label": "Favorite",  "n": 108, "median": 0.3095874735255876  },
+  { "min_bin": "45–60", "fav_label": "Underdog",  "n": 12,  "median": 0.4102168842494595  },
+  { "min_bin": "60–75", "fav_label": "Favorite",  "n": 128, "median": 0.3738275992861001  },
+  { "min_bin": "60–75", "fav_label": "Underdog",  "n": 25,  "median": 0.44761904761904764 },
+  { "min_bin": "75–90", "fav_label": "Favorite",  "n": 85,  "median": 0.47049441786283885 },
+  { "min_bin": "75–90", "fav_label": "Underdog",  "n": 33,  "median": 0.58125             },
+  { "min_bin": "90+",   "fav_label": "Favorite",  "n": 42,  "median": 0.09212690834387727 },
+  { "min_bin": "90+",   "fav_label": "Underdog",  "n": 23,  "median": 0.7263036218854354  }
+]

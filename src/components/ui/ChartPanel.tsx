@@ -17,7 +17,7 @@ export default function ChartPanel({
     <div className="rounded-xl border border-gray-100 bg-white p-6 sm:p-8 mb-6">
       <h3 className="text-base font-semibold text-gray-900 mb-1">{title}</h3>
       {annotation && (
-        <p className="text-sm text-teal-700 font-medium mb-5 max-w-2xl">{annotation}</p>
+        <p className="text-sm text-syracuse-navy font-medium mb-5 max-w-2xl">{annotation}</p>
       )}
       <div className="mt-4">{children}</div>
       <p className="mt-5 text-xs text-gray-400 leading-relaxed border-t border-gray-50 pt-4">

@@ -53,7 +53,7 @@ export default function ThetaParamsTable({ data }: Props) {
             const meta = GROUP_META[row.group]
             return (
               <tr key={row.group} className="hover:bg-gray-50">
-                <td className="py-3 pr-4 font-semibold text-teal-700 font-mono text-sm">
+                <td className="py-3 pr-4 font-semibold text-syracuse-orange font-mono text-sm">
                   {meta.shortName}
                 </td>
                 <td className="py-3 pr-6 text-gray-600 text-xs leading-snug">{meta.description}</td>

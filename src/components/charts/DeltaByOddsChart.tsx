@@ -11,7 +11,8 @@ import {
 import type { TooltipProps } from 'recharts'
 import type { DeltaOddsBinRow } from '../../types'
 
-const C_TEAL = '#0F766E'
+const C_ORANGE = '#F76900'
+const C_NAVY   = '#000E54'
 
 interface ChartPoint extends DeltaOddsBinRow {
   band_base: number
@@ -42,7 +43,7 @@ export default function DeltaByOddsChart({ data }: Props) {
             75th pct:{' '}
             <span className="font-mono">{pt.p75.toFixed(3)}</span>
           </p>
-          <p className="font-semibold" style={{ color: C_TEAL }}>
+          <p className="font-semibold" style={{ color: C_NAVY }}>
             Median Δ:{' '}
             <span className="font-mono">{pt.median_delta.toFixed(3)}</span>
           </p>
@@ -108,7 +109,7 @@ export default function DeltaByOddsChart({ data }: Props) {
               dataKey="band_height"
               stackId="iqr"
               stroke="none"
-              fill={C_TEAL}
+              fill={C_ORANGE}
               fillOpacity={0.13}
               activeDot={false}
               legendType="none"
@@ -118,9 +119,9 @@ export default function DeltaByOddsChart({ data }: Props) {
               type="monotone"
               dataKey="median_delta"
               name="Median Δ"
-              stroke={C_TEAL}
+              stroke={C_ORANGE}
               strokeWidth={2.5}
-              dot={{ r: 4, fill: C_TEAL, strokeWidth: 0 }}
+              dot={{ r: 4, fill: C_ORANGE, strokeWidth: 0 }}
               activeDot={{ r: 6, strokeWidth: 0 }}
             />
           </ComposedChart>
@@ -128,13 +129,13 @@ export default function DeltaByOddsChart({ data }: Props) {
         {/* Manual IQR legend */}
         <div className="flex items-center justify-center gap-5 mt-1 text-xs text-gray-400">
           <span className="flex items-center gap-1.5">
-            <span className="inline-block w-5" style={{ borderTop: `2.5px solid ${C_TEAL}` }} />
+            <span className="inline-block w-5" style={{ borderTop: `2.5px solid ${C_ORANGE}` }} />
             Median Δ
           </span>
           <span className="flex items-center gap-1.5">
             <span
               className="inline-block w-5 h-3 rounded-sm"
-              style={{ background: C_TEAL, opacity: 0.18 }}
+              style={{ background: C_ORANGE, opacity: 0.18 }}
             />
             IQR (25th–75th pct)
           </span>

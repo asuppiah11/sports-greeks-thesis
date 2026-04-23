@@ -12,8 +12,8 @@ import {
 import type { TooltipProps } from 'recharts'
 import type { ThetaParamsRow } from '../../types'
 
-const C_A = '#0F766E'
-const C_B = '#6B7280'
+const C_A = '#F76900'
+const C_B = '#000E54'
 
 interface CurvePoint {
   t: number

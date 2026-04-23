@@ -25,8 +25,8 @@ export default function Nav({ sections }: NavProps) {
                 className={[
                   'flex-shrink-0 px-4 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap',
                   isActive
-                    ? 'border-teal-700 text-teal-700'
-                    : 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300',
+                    ? 'border-syracuse-orange text-syracuse-navy'
+                    : 'border-transparent text-gray-500 hover:text-syracuse-navy hover:border-gray-300',
                 ].join(' ')}
               >
                 {label}

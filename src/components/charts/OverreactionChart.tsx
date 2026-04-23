@@ -12,7 +12,7 @@ import {
 import type { TooltipProps } from 'recharts'
 import type { OverreactionRow } from '../../types'
 
-const COLORS = ['#9CA3AF', '#6B7280', '#0F766E']
+const COLORS = ['#9CA3AF', '#000E54', '#F76900']
 
 interface ChartPoint {
   group: string
@@ -52,7 +52,7 @@ export default function OverreactionChart({ data }: Props) {
         <p className="text-gray-500 mb-1">n = {pt.n}</p>
         <p>
           Median overshoot:{' '}
-          <span className="font-mono font-semibold text-teal-700">
+          <span className="font-mono font-semibold text-syracuse-navy">
             {pt.median_overshoot.toFixed(3)}
           </span>
         </p>

@@ -11,7 +11,8 @@ import {
 import type { TooltipProps } from 'recharts'
 import type { CalibrationRow } from '../../types'
 
-const C_TEAL = '#0F766E'
+const C_ORANGE = '#F76900'
+const C_NAVY   = '#000E54'
 
 interface ChartPoint extends CalibrationRow {
   error_lo: number
@@ -30,7 +31,7 @@ const CalibrationDot = (props: any) => {
   if (!cx || !cy || !payload) return null
 
   const mainDot = (
-    <circle cx={cx} cy={cy} r={5} fill={C_TEAL} stroke="white" strokeWidth={2} />
+    <circle cx={cx} cy={cy} r={5} fill={C_ORANGE} stroke="white" strokeWidth={2} />
   )
 
   if (!yAxis?.scale) return <g>{mainDot}</g>
@@ -41,9 +42,9 @@ const CalibrationDot = (props: any) => {
 
   return (
     <g>
-      <line x1={cx} y1={yLo} x2={cx} y2={yHi} stroke={C_TEAL} strokeWidth={1.5} />
-      <line x1={cx - capW} y1={yLo} x2={cx + capW} y2={yLo} stroke={C_TEAL} strokeWidth={1.5} />
-      <line x1={cx - capW} y1={yHi} x2={cx + capW} y2={yHi} stroke={C_TEAL} strokeWidth={1.5} />
+      <line x1={cx} y1={yLo} x2={cx} y2={yHi} stroke={C_ORANGE} strokeWidth={1.5} />
+      <line x1={cx - capW} y1={yLo} x2={cx + capW} y2={yLo} stroke={C_ORANGE} strokeWidth={1.5} />
+      <line x1={cx - capW} y1={yHi} x2={cx + capW} y2={yHi} stroke={C_ORANGE} strokeWidth={1.5} />
       {mainDot}
     </g>
   )
@@ -73,7 +74,7 @@ export default function CalibrationChart({ data }: Props) {
           <span className="font-mono">{(pt.implied_prob * 100).toFixed(1)}%</span>
         </p>
         <p className="flex justify-between gap-3">
-          <span className="font-medium" style={{ color: C_TEAL }}>Actual rate</span>
+          <span className="font-medium" style={{ color: C_NAVY }}>Actual rate</span>
           <span className="font-mono font-semibold">{(pt.actual_rate * 100).toFixed(1)}%</span>
         </p>
         <p className="flex justify-between gap-3 text-gray-400">

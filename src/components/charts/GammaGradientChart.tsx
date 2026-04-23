@@ -12,7 +12,8 @@ import type { TooltipProps } from 'recharts'
 import type { GammaHeatmapRow } from '../../types'
 
 const BIN_ORDER = ['0–15', '15–30', '30–45', '45–60', '60–75', '75–90', '90+']
-const C_LINE = '#0F766E'
+const C_LINE = '#F76900'
+const C_NAVY = '#000E54'
 
 interface ChartPoint {
   min_bin: string
@@ -43,7 +44,7 @@ export default function GammaGradientChart({ data }: Props) {
         <p className="font-semibold text-gray-800 mb-1">{label} min (Tied)</p>
         <p>
           Median Δ:{' '}
-          <span className="font-mono font-semibold" style={{ color: C_LINE }}>
+          <span className="font-mono font-semibold" style={{ color: C_NAVY }}>
             {pt.med_delta.toFixed(3)}
           </span>
         </p>
@@ -95,13 +96,13 @@ export default function GammaGradientChart({ data }: Props) {
             <Tooltip content={tooltipContent} cursor={{ stroke: '#E5E7EB', strokeWidth: 1 }} />
             <ReferenceLine
               x="75–90"
-              stroke="#0F766E"
+              stroke={C_LINE}
               strokeDasharray="4 3"
               strokeWidth={1}
               label={{
                 value: 'Peak: Δ=0.531',
                 position: 'top',
-                fill: '#0F766E',
+                fill: C_NAVY,
                 fontSize: 11,
                 fontWeight: 600,
               }}

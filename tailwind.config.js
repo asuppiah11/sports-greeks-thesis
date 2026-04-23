@@ -7,11 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        teal: {
-          700: '#0F766E',
-          800: '#0D6B63',
-          900: '#0A5C55',
-        },
+        'syracuse-orange': '#F76900',
+        'syracuse-navy':   '#000E54',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

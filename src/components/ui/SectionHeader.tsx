@@ -11,7 +11,7 @@ export default function SectionHeader({ icon: Icon, title, summary }: SectionHea
   return (
     <div className="mb-10">
       <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-50 text-teal-700">
+        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-syracuse-navy/10 text-syracuse-navy">
           <Icon size={17} strokeWidth={2} />
         </div>
         <h2 className="text-xl font-bold text-gray-900">{title}</h2>

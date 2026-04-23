@@ -12,7 +12,7 @@ import type { TooltipProps } from 'recharts'
 import type { ThetaAccelRow } from '../../types'
 
 const C_EARLY = '#D1D5DB'
-const C_LATE = '#0F766E'
+const C_LATE = '#F76900'
 
 interface ChartPoint {
   label: string
@@ -61,7 +61,7 @@ export default function ThetaAccelChart({ data }: Props) {
             <span className="font-mono font-semibold">{pt.late.toFixed(3)} ×10⁻³</span>
           </p>
         </div>
-        <p className="mt-1.5 pt-1.5 border-t border-gray-100 text-teal-700 font-semibold">
+        <p className="mt-1.5 pt-1.5 border-t border-gray-100 text-syracuse-navy font-semibold">
           Acceleration: {pt.accel_ratio.toFixed(2)}×
         </p>
       </div>

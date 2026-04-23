@@ -5,7 +5,7 @@ export default function Header() {
     <header className="border-b border-gray-100 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-3xl">
-          <p className="text-sm font-medium text-teal-700 tracking-wide uppercase mb-3">
+          <p className="text-sm font-medium text-syracuse-navy tracking-wide uppercase mb-3">
             Honors Thesis · Spring 2026
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-2">
@@ -24,7 +24,7 @@ export default function Header() {
           </p>
           <a
             href="#"
-            className="inline-flex items-center gap-2 text-sm font-medium text-teal-700 hover:text-teal-800 border border-teal-200 hover:border-teal-300 rounded-md px-4 py-2 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-syracuse-navy hover:text-syracuse-navy/70 border border-syracuse-navy/30 hover:border-syracuse-navy/60 rounded-md px-4 py-2 transition-colors"
           >
             <FileText size={15} />
             Full thesis PDF (coming soon)

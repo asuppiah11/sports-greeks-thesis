@@ -15,6 +15,9 @@ const SMALL_N = 10
 const PEAK_BIN = '75–90'
 const PEAK_DIFF = 0
 
+// Dark text always passes WCAG AA on the orange gradient
+const CELL_TEXT = '#1F2937'
+
 interface Tooltip {
   x: number
   y: number
@@ -33,12 +36,7 @@ function getCellBg(medDelta: number, isSmall: boolean): string {
   const alpha = isSmall
     ? getIntensity(medDelta) * 0.35
     : getIntensity(medDelta)
-  return `rgba(15,118,110,${alpha.toFixed(3)})`
-}
-
-function getCellTextColor(medDelta: number, isSmall: boolean): string {
-  const effective = isSmall ? getIntensity(medDelta) * 0.35 : getIntensity(medDelta)
-  return effective > 0.42 ? '#ffffff' : '#374151'
+  return `rgba(247,105,0,${alpha.toFixed(3)})`
 }
 
 interface Props {
@@ -84,7 +82,7 @@ export default function GammaHeatmap({ data }: Props) {
               <span
                 className={[
                   'text-xs font-medium',
-                  diff === 0 ? 'text-teal-700 font-semibold' : 'text-gray-500',
+                  diff === 0 ? 'text-syracuse-orange font-semibold' : 'text-gray-500',
                 ].join(' ')}
               >
                 {DIFF_LABELS[diff]}
@@ -110,15 +108,12 @@ export default function GammaHeatmap({ data }: Props) {
               return (
                 <div
                   key={bin}
-                  className={[
-                    'relative m-0.5 rounded flex items-center justify-center cursor-default select-none',
-                    isPeak ? 'ring-2 ring-white ring-offset-1 ring-offset-teal-600' : '',
-                  ].join(' ')}
+                  className="relative m-0.5 rounded flex items-center justify-center cursor-default select-none"
                   style={{
                     height: 52,
                     background: getCellBg(cell.med_delta, isSmall),
-                    outline: isPeak ? '2px solid #0F766E' : undefined,
-                    outlineOffset: isPeak ? '2px' : undefined,
+                    outline: isPeak ? '2px solid #000E54' : undefined,
+                    outlineOffset: isPeak ? '-2px' : undefined,
                   }}
                   onMouseEnter={e => {
                     setTooltip({
@@ -140,11 +135,11 @@ export default function GammaHeatmap({ data }: Props) {
                 >
                   <span
                     className="text-xs font-mono font-medium"
-                    style={{ color: getCellTextColor(cell.med_delta, isSmall) }}
+                    style={{ color: CELL_TEXT }}
                   >
                     {cell.med_delta.toFixed(2)}
                     {isPeak && (
-                      <span className="block text-center text-[9px] font-normal opacity-90 leading-tight mt-0.5">
+                      <span className="block text-center text-[9px] font-normal opacity-75 leading-tight mt-0.5">
                         Peak
                       </span>
                     )}
@@ -154,7 +149,7 @@ export default function GammaHeatmap({ data }: Props) {
                   {isSmall && (
                     <span
                       className="absolute top-0.5 right-1 text-[9px] leading-none"
-                      style={{ color: getCellTextColor(cell.med_delta, isSmall) }}
+                      style={{ color: CELL_TEXT }}
                     >
                       *
                     </span>
@@ -171,7 +166,7 @@ export default function GammaHeatmap({ data }: Props) {
             <div
               className="w-14 h-3 rounded-sm"
               style={{
-                background: 'linear-gradient(to right, rgba(15,118,110,0.08), rgba(15,118,110,1))',
+                background: 'linear-gradient(to right, rgba(247,105,0,0.08), rgba(247,105,0,1))',
               }}
             />
             <span>Low → High Δ (0 → 0.6+)</span>
@@ -181,7 +176,7 @@ export default function GammaHeatmap({ data }: Props) {
         </div>
       </div>
 
-      {/* Tooltip portal */}
+      {/* Tooltip */}
       {tooltip && (
         <div
           className="fixed z-50 bg-white border border-gray-200 rounded-lg shadow-md px-3 py-2 text-xs pointer-events-none"
@@ -192,7 +187,7 @@ export default function GammaHeatmap({ data }: Props) {
           </p>
           <p className="text-gray-600">
             Median Δ:{' '}
-            <span className="font-mono font-semibold text-teal-700">
+            <span className="font-mono font-semibold text-syracuse-navy">
               {tooltip.medDelta.toFixed(3)}
             </span>
           </p>

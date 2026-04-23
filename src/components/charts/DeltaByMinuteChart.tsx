@@ -12,8 +12,8 @@ import type { TooltipProps } from 'recharts'
 import type { DeltaMinuteRow } from '../../types'
 
 const BIN_ORDER = ['0–15', '15–30', '30–45', '45–60', '60–75', '75–90', '90+']
-const C_FAV = '#6B7280'
-const C_UND = '#0F766E'
+const C_FAV = '#000E54'
+const C_UND = '#F76900'
 
 interface Point {
   min_bin: string

@@ -13,8 +13,8 @@ import type { TooltipProps } from 'recharts'
 import type { ReactionSpeedRow } from '../../types'
 
 const C_ALL = '#D1D5DB'
-const C_FAV = '#6B7280'
-const C_UND = '#0F766E'
+const C_FAV = '#000E54'
+const C_UND = '#F76900'
 
 const COMPETITION_ABBREV: Record<string, string> = {
   'English Premier League': 'EPL',
@@ -79,7 +79,7 @@ export default function ReactionSpeedChart({ data }: Props) {
             <span className="font-mono">{pt.favorite}s</span>
           </p>
           <p className="flex justify-between gap-4">
-            <span className="flex items-center gap-1.5 font-medium" style={{ color: C_UND }}>
+            <span className="flex items-center gap-1.5 font-medium text-syracuse-navy">
               <span className="w-2 h-2 rounded-sm" style={{ background: C_UND }} />
               Underdog (n={pt.undN})
             </span>
@@ -132,13 +132,13 @@ export default function ReactionSpeedChart({ data }: Props) {
             />
             <ReferenceLine
               y={102}
-              stroke="#0F766E"
+              stroke={C_UND}
               strokeDasharray="4 3"
               strokeWidth={1.5}
               label={{
                 value: 'Overall median: 102s',
                 position: 'right',
-                fill: '#0F766E',
+                fill: '#000E54',
                 fontSize: 10,
               }}
             />

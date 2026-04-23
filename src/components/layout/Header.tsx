@@ -6,7 +6,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-3xl">
           <p className="text-sm font-medium text-syracuse-navy tracking-wide uppercase mb-3">
-            Honors Thesis · Spring 2026
+            Sport Analytics · May 2026
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-2">
             Quantifying Market Greeks in Soccer Betting
@@ -14,7 +14,12 @@ export default function Header() {
           <p className="text-lg sm:text-xl text-gray-500 font-normal mb-4">
             A Theoretical Framework for In-Play Price Sensitivity
           </p>
-          <p className="text-base text-gray-700 font-semibold mb-1">Adhitya Suppiah</p>
+          <p className="text-base text-gray-700 font-semibold mb-0.5">Adhitya Suppiah</p>
+          <p className="text-sm text-gray-400 mb-5">
+            Sport Analytics ·{' '}
+            <span className="text-syracuse-navy font-medium">Syracuse University</span>
+            {' '}· May 2026
+          </p>
           <p className="text-sm text-gray-500 mb-6">
             This dashboard presents empirical evidence that Betfair in-play soccer odds exhibit
             systematic sensitivity patterns — Delta, Theta, and Gamma — analogous to options

@@ -43,7 +43,7 @@ export default function DeltaSection() {
         caption={
           'Goals are grouped by the scorer\'s decimal odds at the moment before the goal. ' +
           'The shaded band shows the interquartile range (25th–75th percentile), capturing spread within each bin. ' +
-          'The 10.0+ bin has n=20 and a wide IQR, reflecting limited data for extreme longshots. ' +
+          'The 10.0+ bin has n=32 and a wide IQR, reflecting limited data for extreme longshots. ' +
           'The near-linear relationship between log-odds and Delta is consistent with a Bayesian updating model ' +
           'where larger surprises produce larger revisions.'
         }

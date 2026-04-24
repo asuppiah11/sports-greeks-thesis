@@ -2,8 +2,8 @@
   {
     "id": "H1",
     "hypothesis": "H1: Underdog Δ > Favorite Δ",
-    "fav_n": 663,
-    "und_n": 103,
+    "fav_n": 1049,
+    "und_n": 163,
     "fav_median": 0.2623,
     "und_median": 0.52766,
     "ratio": 2.012,
@@ -19,7 +19,7 @@
     "id": "H2",
     "hypothesis": "H2: Theta accelerates in scoreless period final third",
     "group": "A_pure_00",
-    "n": 46,
+    "n": 73,
     "early_theta": 0.001788,
     "late_theta": 0.008045,
     "accel_ratio": 4.499,
@@ -33,8 +33,8 @@
     "test": "Mann-Whitney U (one-tailed)",
     "U": 22367.0,
     "p_value": 1.8e-34,
-    "early_n": 179,
-    "late_n": 139,
+    "early_n": 283,
+    "late_n": 220,
     "early_median": 0.19099,
     "late_median": 0.50922
   }

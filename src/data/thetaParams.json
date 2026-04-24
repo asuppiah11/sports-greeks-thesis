@@ -1,6 +1,6 @@
 [
-  { "group": "A_pure_00",         "label": "Group A (Pure 0-0)",         "n_segments": 46,  "a_fit": 0.25311, "b_fit": 0.010532,  "SE_a": 0.00315, "SE_b": 0.000199 },
-  { "group": "B_pre_first_goal",  "label": "Group B (Pre-First Goal)",   "n_segments": 469, "a_fit": 0.30055, "b_fit": 0.001533,  "SE_a": 0.01981, "SE_b": 0.00111  },
-  { "group": "C_level_score",     "label": "Group C (Level Score)",      "n_segments": 15,  "a_fit": 0.21479, "b_fit": -0.023119, "SE_a": 0.0057,  "SE_b": 0.001966 },
+  { "group": "A_pure_00",         "label": "Group A (Pure 0-0)",         "n_segments": 73,  "a_fit": 0.25311, "b_fit": 0.010532,  "SE_a": 0.00315, "SE_b": 0.000199 },
+  { "group": "B_pre_first_goal",  "label": "Group B (Pre-First Goal)",   "n_segments": 742, "a_fit": 0.30055, "b_fit": 0.001533,  "SE_a": 0.01981, "SE_b": 0.00111  },
+  { "group": "C_level_score",     "label": "Group C (Level Score)",      "n_segments": 24,  "a_fit": 0.21479, "b_fit": -0.023119, "SE_a": 0.0057,  "SE_b": 0.001966 },
   { "group": "Poisson",           "label": "Poisson Baseline",           "n_segments": null, "a_fit": null,   "b_fit": null,      "SE_a": null,    "SE_b": null,    "lambda": 1.160 }
 ]

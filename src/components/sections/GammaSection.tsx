@@ -46,7 +46,7 @@ export default function GammaSection() {
           'This panel isolates the score_diff = 0 row from the heatmap and plots it as a time series. ' +
           'The near-linear rise through 75–90 min followed by a jump in the 90+ bin captures the ' +
           '"Gamma gradient": market sensitivity to a goal in a tied match increases as time pressure mounts. ' +
-          'The 90+ bin (n=29) reflects stoppage-time goals — high Delta but also high variance. ' +
+          'The 90+ bin (n=46) reflects stoppage-time goals — high Delta but also high variance. ' +
           'The dashed reference line marks the analytical peak at 75–90 min.'
         }
       >

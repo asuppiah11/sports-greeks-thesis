@@ -1,7 +1,7 @@
 [
-  { "bin": "<30%",   "n": 153, "implied_prob": 0.2047, "actual_rate": 0.1699, "actual_se": 0.0304, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
-  { "bin": "30–45%", "n": 208, "implied_prob": 0.373,  "actual_rate": 0.399,  "actual_se": 0.034,  "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
-  { "bin": "45–60%", "n": 217, "implied_prob": 0.5178, "actual_rate": 0.5069, "actual_se": 0.0339, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
-  { "bin": "60–75%", "n": 132, "implied_prob": 0.6764, "actual_rate": 0.7045, "actual_se": 0.0397, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
-  { "bin": ">75%",   "n": 61,  "implied_prob": 0.8285, "actual_rate": 0.7869, "actual_se": 0.0524, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 }
+  { "bin": "<30%",   "n": 242, "implied_prob": 0.2047, "actual_rate": 0.1699, "actual_se": 0.0304, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
+  { "bin": "30–45%", "n": 329, "implied_prob": 0.373,  "actual_rate": 0.399,  "actual_se": 0.034,  "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
+  { "bin": "45–60%", "n": 343, "implied_prob": 0.5178, "actual_rate": 0.5069, "actual_se": 0.0339, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
+  { "bin": "60–75%", "n": 209, "implied_prob": 0.6764, "actual_rate": 0.7045, "actual_se": 0.0397, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 },
+  { "bin": ">75%",   "n": 97,  "implied_prob": 0.8285, "actual_rate": 0.7869, "actual_se": 0.0524, "chi2_stat": 1.618410882880441, "chi2_p": 0.8054793804239363, "brier_score": 0.2116655425140148 }
 ]

@@ -10,7 +10,7 @@ import type { ThetaParamsRow, ThetaAccelRow } from '../../types'
 
 export default function ThetaSection() {
   return (
-    <section id="theta" className="section-scroll-mt pt-6 pb-2">
+    <section id="theta" className="section-scroll-mt pt-4 pb-0">
       <SectionHeader
         icon={Clock}
         title="Theta — Time Decay in Scoreless Intervals"

@@ -22,7 +22,7 @@ export default function App() {
       <StatusBar />
       <Header />
       <Nav sections={NAV_SECTIONS} />
-      <main className="w-full px-6 lg:px-8 pb-16">
+      <main className="w-full px-6 lg:px-8 pb-8">
         <ModelSection />
         <DeltaSection />
         <ThetaSection />

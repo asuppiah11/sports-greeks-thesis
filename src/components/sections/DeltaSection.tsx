@@ -9,7 +9,7 @@ import type { DeltaMinuteRow, DeltaOddsBinRow } from '../../types'
 
 export default function DeltaSection() {
   return (
-    <section id="delta" className="section-scroll-mt pt-6 pb-2">
+    <section id="delta" className="section-scroll-mt pt-4 pb-0">
       <SectionHeader
         icon={TrendingUp}
         title="Delta — Price Sensitivity to Goals"

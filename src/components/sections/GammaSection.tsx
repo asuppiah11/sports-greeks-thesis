@@ -10,7 +10,7 @@ export default function GammaSection() {
   const data = gammaHeatmap as GammaHeatmapRow[]
 
   return (
-    <section id="gamma" className="section-scroll-mt pt-6 pb-2">
+    <section id="gamma" className="section-scroll-mt pt-4 pb-0">
       <SectionHeader
         icon={Zap}
         title="Gamma — Convexity of Price Response"

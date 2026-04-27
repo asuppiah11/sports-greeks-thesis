@@ -11,7 +11,7 @@ import type { ReactionSpeedRow, OverreactionRow, CalibrationRow } from '../../ty
 
 export default function MarketSection() {
   return (
-    <section id="market" className="section-scroll-mt pt-6 pb-2">
+    <section id="market" className="section-scroll-mt pt-4 pb-0">
       <SectionHeader
         icon={Activity}
         title="Market Behavior — Efficiency, Speed, and Bias"

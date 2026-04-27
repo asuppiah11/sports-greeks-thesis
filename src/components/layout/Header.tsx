@@ -27,7 +27,7 @@ const GLANCE_ROWS = [
 export default function Header() {
   return (
     <header className="border-b border-terminal-border bg-terminal-bg">
-      <div className="w-full px-6 lg:px-8 py-5 sm:py-6">
+      <div className="w-full px-6 lg:px-8 py-4 sm:py-5">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-0">
 
           {/* Left — title block */}
@@ -75,7 +75,7 @@ export default function Header() {
             {/* Greek result rows */}
             <div className="border border-terminal-border divide-y divide-terminal-border flex-1">
               {GLANCE_ROWS.map(row => (
-                <div key={row.sym} className="flex items-center gap-5 px-4 py-3">
+                <div key={row.sym} className="flex items-center gap-5 px-4 py-2">
                   <span className="font-mono text-[22px] font-bold text-terminal-orange w-7 flex-shrink-0 leading-none">
                     {row.sym}
                   </span>

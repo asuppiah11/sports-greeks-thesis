@@ -20,7 +20,7 @@ export default function ChartPanel({
   stats,
 }: ChartPanelProps) {
   return (
-    <div className="border border-terminal-border bg-terminal-panel p-4 mb-3">
+    <div className="border border-terminal-border bg-terminal-panel p-4 mb-2">
       <div className="flex items-start gap-2 mb-1">
         {panelId && (
           <span className="font-mono text-[9px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 flex-shrink-0 mt-0.5">

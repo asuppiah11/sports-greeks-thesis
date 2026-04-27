@@ -26,13 +26,15 @@ const FINDINGS = [
 
 export default function FindingsGlance() {
   return (
-    <section className="py-10 border-b border-gray-100">
-      <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
+    <section className="py-6 border-b border-terminal-border">
+      <p className="font-mono text-[10px] font-semibold text-terminal-dim uppercase tracking-widest mb-4">
         Findings at a Glance
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {FINDINGS.map((f) => (
-          <StatCard key={f.label} {...f} />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-terminal-border">
+        {FINDINGS.map((f, i) => (
+          <div key={f.label} className={i < FINDINGS.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-terminal-border' : ''}>
+            <StatCard {...f} />
+          </div>
         ))}
       </div>
     </section>

@@ -1,28 +1,17 @@
 import { useState } from 'react'
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  ReferenceLine,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine,
 } from 'recharts'
 import type { TooltipProps } from 'recharts'
 import type { ReactionSpeedRow } from '../../types'
-import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL } from '../../lib/chartTheme'
-
-const C_ALL = '#D1D5DB'
-const C_FAV = '#000E54'
-const C_UND = '#F76900'
+import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL, C_UNDERDOG, C_FAVORITE, C_DIM } from '../../lib/chartTheme'
 
 const COMPETITION_ABBREV: Record<string, string> = {
   'English Premier League': 'EPL',
-  'German Bundesliga': 'Bundesliga',
-  'Italian Serie A': 'Serie A',
-  'Spanish La Liga': 'La Liga',
-  'UEFA Champions League': 'UCL',
+  'German Bundesliga':      'BUNDESLIGA',
+  'Italian Serie A':        'SERIE A',
+  'Spanish La Liga':        'LA LIGA',
+  'UEFA Champions League':  'UCL',
 }
 
 interface ChartPoint {
@@ -33,34 +22,22 @@ interface ChartPoint {
 
 interface SeriesMeta { key: string; label: string; color: string }
 
-function SeriesToggle({
-  series, visible, hovered, onToggle, onHover,
-}: {
-  series: SeriesMeta[]
-  visible: Record<string, boolean>
-  hovered: string | null
-  onToggle: (k: string) => void
-  onHover: (k: string | null) => void
+function SeriesToggle({ series, visible, hovered, onToggle, onHover }: {
+  series: SeriesMeta[]; visible: Record<string, boolean>; hovered: string | null
+  onToggle: (k: string) => void; onHover: (k: string | null) => void
 }) {
   return (
     <div className="flex flex-wrap gap-1.5 mb-2">
       {series.map(s => {
         const on = visible[s.key]
         return (
-          <button
-            key={s.key}
-            onClick={() => onToggle(s.key)}
-            onMouseEnter={() => onHover(s.key)}
-            onMouseLeave={() => onHover(null)}
-            className={[
-              'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs select-none',
-              'border transition-all duration-150 cursor-pointer',
-              on ? 'border-gray-200 bg-white text-gray-700' : 'border-gray-100 bg-gray-50 text-gray-400',
-            ].join(' ')}
+          <button key={s.key} onClick={() => onToggle(s.key)}
+            onMouseEnter={() => onHover(s.key)} onMouseLeave={() => onHover(null)}
             style={{ opacity: hovered && hovered !== s.key ? 0.45 : 1 }}
-          >
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: on ? s.color : '#D1D5DB' }} />
-            {s.label}
+            className={['inline-flex items-center gap-1.5 px-2 py-0.5 font-mono text-[10px] select-none border transition-all cursor-pointer',
+              on ? 'border-terminal-border bg-terminal-panel text-terminal-text' : 'border-terminal-border bg-terminal-bg text-terminal-dim'].join(' ')}>
+            <span className="w-2 h-2 flex-shrink-0" style={{ background: on ? s.color : '#3a3a3a' }} />
+            {s.label.toUpperCase()}
           </button>
         )
       })}
@@ -69,9 +46,9 @@ function SeriesToggle({
 }
 
 const SERIES: SeriesMeta[] = [
-  { key: 'all',      label: 'All goals',       color: C_ALL },
-  { key: 'favorite', label: 'Favorite scores', color: C_FAV },
-  { key: 'underdog', label: 'Underdog scores', color: C_UND },
+  { key: 'all',      label: 'All goals',       color: C_DIM      },
+  { key: 'favorite', label: 'Favorite scores', color: C_FAVORITE },
+  { key: 'underdog', label: 'Underdog scores', color: C_UNDERDOG },
 ]
 
 interface Props { data: ReactionSpeedRow[] }
@@ -90,12 +67,8 @@ export default function ReactionSpeedChart({ data }: Props) {
     const und = data.find(d => d.competition === league && d.event_type === 'underdog_scores')
     return {
       competition: COMPETITION_ABBREV[league],
-      all: all?.median_tte_s ?? 0,
-      favorite: fav?.median_tte_s ?? 0,
-      underdog: und?.median_tte_s ?? 0,
-      allN: all?.n ?? 0,
-      favN: fav?.n ?? 0,
-      undN: und?.n ?? 0,
+      all: all?.median_tte_s ?? 0, favorite: fav?.median_tte_s ?? 0, underdog: und?.median_tte_s ?? 0,
+      allN: all?.n ?? 0, favN: fav?.n ?? 0, undN: und?.n ?? 0,
     }
   })
 
@@ -104,30 +77,12 @@ export default function ReactionSpeedChart({ data }: Props) {
     const pt = chartData.find(d => d.competition === label)
     if (!pt) return null
     return (
-      <div className="bg-white border border-[rgba(0,14,84,0.3)] rounded-lg shadow-md px-3 py-2.5 text-xs min-w-[195px]">
-        <p className="font-semibold text-gray-800 mb-2">{label}</p>
+      <div className="bg-[#161616] border border-[#2a2a2a] px-2.5 py-2 font-mono text-[11px] min-w-[195px]">
+        <p className="text-terminal-muted mb-1.5">{label}</p>
         <div className="space-y-0.5">
-          <p className="flex justify-between gap-4">
-            <span className="flex items-center gap-1.5 text-gray-500">
-              <span className="w-2 h-2 rounded-sm" style={{ background: C_ALL }} />
-              All goals (n={pt.allN})
-            </span>
-            <span className="font-mono">{pt.all}s</span>
-          </p>
-          <p className="flex justify-between gap-4">
-            <span className="flex items-center gap-1.5 text-gray-600">
-              <span className="w-2 h-2 rounded-sm" style={{ background: C_FAV }} />
-              Favorite (n={pt.favN})
-            </span>
-            <span className="font-mono">{pt.favorite}s</span>
-          </p>
-          <p className="flex justify-between gap-4">
-            <span className="flex items-center gap-1.5 font-medium" style={{ color: C_UND }}>
-              <span className="w-2 h-2 rounded-sm" style={{ background: C_UND }} />
-              Underdog (n={pt.undN})
-            </span>
-            <span className="font-mono font-semibold">{pt.underdog}s</span>
-          </p>
+          <div className="flex justify-between gap-4"><span className="text-terminal-dim">ALL (n={pt.allN})</span><span className="text-terminal-text">{pt.all}s</span></div>
+          <div className="flex justify-between gap-4"><span style={{ color: C_FAVORITE }}>FAVORITE (n={pt.favN})</span><span className="text-terminal-text">{pt.favorite}s</span></div>
+          <div className="flex justify-between gap-4"><span style={{ color: C_UNDERDOG }}>UNDERDOG (n={pt.undN})</span><span className="text-terminal-text font-semibold">{pt.underdog}s</span></div>
         </div>
       </div>
     )
@@ -137,49 +92,23 @@ export default function ReactionSpeedChart({ data }: Props) {
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 480 }}>
         <SeriesToggle series={SERIES} visible={visible} hovered={hovered} onToggle={toggle} onHover={setHovered} />
-        <div className="h-[240px] sm:h-[360px]">
+        <div className="h-[240px] sm:h-[340px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} margin={{ top: 8, right: 28, bottom: 8, left: 16 }} barGap={2} barCategoryGap="28%">
-              <CartesianGrid strokeDasharray="3 3" stroke={GRID_STROKE} vertical={false} />
-              <XAxis
-                dataKey="competition"
-                tick={TICK_STYLE}
-                tickLine={false}
-                axisLine={AXIS_LINE}
-              />
-              <YAxis
-                domain={[0, 300]}
-                ticks={[0, 60, 120, 180, 240, 300]}
-                tickFormatter={(v: number) => `${v}s`}
-                tick={TICK_STYLE}
-                tickLine={false}
-                axisLine={false}
-                width={40}
-                label={{ value: 'Median TTE (seconds)', angle: -90, position: 'insideLeft', offset: 4, fontSize: 11, fill: LABEL_FILL }}
-              />
-              <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(0,14,84,0.04)' }} />
-              <ReferenceLine
-                y={102}
-                stroke={C_UND}
-                strokeDasharray="4 3"
-                strokeWidth={1.5}
-                label={{ value: 'Overall median: 102s', position: 'right', fill: '#000E54', fontSize: 10 }}
-              />
-              <Bar
-                dataKey="all" name="all" fill={C_ALL} radius={[3, 3, 0, 0]} maxBarSize={24}
-                hide={!visible.all} opacity={dim('all')}
-                onMouseEnter={() => setHovered('all')} onMouseLeave={() => setHovered(null)}
-              />
-              <Bar
-                dataKey="favorite" name="favorite" fill={C_FAV} radius={[3, 3, 0, 0]} maxBarSize={24}
-                hide={!visible.favorite} opacity={dim('favorite')}
-                onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)}
-              />
-              <Bar
-                dataKey="underdog" name="underdog" fill={C_UND} radius={[3, 3, 0, 0]} maxBarSize={24}
-                hide={!visible.underdog} opacity={dim('underdog')}
-                onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)}
-              />
+            <BarChart data={chartData} margin={{ top: 8, right: 20, bottom: 8, left: 8 }} barGap={2} barCategoryGap="28%">
+              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+              <XAxis dataKey="competition" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE} />
+              <YAxis domain={[0, 300]} ticks={[0, 60, 120, 180, 240, 300]} tickFormatter={(v: number) => `${v}s`}
+                tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
+                label={{ value: 'MEDIAN TTE (SEC)', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
+              <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+              <ReferenceLine y={102} stroke={C_UNDERDOG} strokeDasharray="4 3" strokeWidth={1}
+                label={{ value: 'MEDIAN 102s', position: 'right', fill: '#8a8a8a', fontSize: 9, fontFamily: 'IBM Plex Mono' }} />
+              <Bar dataKey="all" fill={C_DIM} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.all} opacity={dim('all')}
+                onMouseEnter={() => setHovered('all')} onMouseLeave={() => setHovered(null)} />
+              <Bar dataKey="favorite" fill={C_FAVORITE} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.favorite} opacity={dim('favorite')}
+                onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)} />
+              <Bar dataKey="underdog" fill={C_UNDERDOG} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.underdog} opacity={dim('underdog')}
+                onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)} />
             </BarChart>
           </ResponsiveContainer>
         </div>

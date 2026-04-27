@@ -9,7 +9,7 @@ import type { DeltaMinuteRow, DeltaOddsBinRow } from '../../types'
 
 export default function DeltaSection() {
   return (
-    <section id="delta" className="section-scroll-mt pt-16 pb-8">
+    <section id="delta" className="section-scroll-mt pt-8 pb-4">
       <SectionHeader
         icon={TrendingUp}
         title="Delta — Price Sensitivity to Goals"
@@ -22,22 +22,24 @@ export default function DeltaSection() {
       />
 
       <ChartPanel
+        panelId="Δ.A"
         title="Panel A — Median Delta by Match Minute"
         annotation="Underdog goals produce 2.01× the price response of favorite goals, and this gap is stable across match minute."
         caption={
           'Each point is the median absolute price change (Delta) for all goals scored in that 15-minute bin. ' +
-          'Favorite goals (gray) rise gradually as the match progresses and late goals become more decisive. ' +
-          'Underdog goals (teal) show a persistently higher Delta throughout. ' +
+          'Favorite goals (blue) rise gradually as the match progresses and late goals become more decisive. ' +
+          'Underdog goals (orange) show a persistently higher Delta throughout. ' +
           'The 90+ bin reflects stoppage-time goals, which carry extreme informational weight.'
         }
       >
         <DeltaByMinuteChart data={deltaByMinute as DeltaMinuteRow[]} />
-        <p className="mt-3 text-xs text-gray-400 italic">
+        <p className="mt-2 font-mono text-[10px] text-terminal-dim italic">
           * Underdog series begins at 15–30 min bin (n&lt;5 for 0–15 underdog goals in sample).
         </p>
       </ChartPanel>
 
       <ChartPanel
+        panelId="Δ.B"
         title="Panel B — Median Delta by Pre-Goal Odds"
         annotation="Delta scales monotonically with pre-goal odds, from 0.15 for near-certainties to 0.66 for heavy underdogs."
         caption={

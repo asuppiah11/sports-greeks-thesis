@@ -1,27 +1,17 @@
 import { useState } from 'react'
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts'
 import type { TooltipProps } from 'recharts'
 import type { DeltaMinuteRow } from '../../types'
-import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL, CURSOR_LINE } from '../../lib/chartTheme'
+import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL, CURSOR_LINE, C_UNDERDOG, C_FAVORITE } from '../../lib/chartTheme'
 
 const BIN_ORDER = ['0–15', '15–30', '30–45', '45–60', '60–75', '75–90', '90+']
-const C_FAV = '#000E54'
-const C_UND = '#F76900'
 
 interface Point {
   min_bin: string
-  favorite: number | null
-  favN: number | null
-  underdog: number | null
-  undN: number | null
+  favorite: number | null; favN: number | null
+  underdog: number | null; undN: number | null
 }
 
 function pivot(rows: DeltaMinuteRow[]): Point[] {
@@ -39,14 +29,9 @@ function pivot(rows: DeltaMinuteRow[]): Point[] {
 
 interface SeriesMeta { key: string; label: string; color: string }
 
-function SeriesToggle({
-  series, visible, hovered, onToggle, onHover,
-}: {
-  series: SeriesMeta[]
-  visible: Record<string, boolean>
-  hovered: string | null
-  onToggle: (k: string) => void
-  onHover: (k: string | null) => void
+function SeriesToggle({ series, visible, hovered, onToggle, onHover }: {
+  series: SeriesMeta[]; visible: Record<string, boolean>; hovered: string | null
+  onToggle: (k: string) => void; onHover: (k: string | null) => void
 }) {
   return (
     <div className="flex flex-wrap gap-1.5 mb-2">
@@ -58,15 +43,15 @@ function SeriesToggle({
             onClick={() => onToggle(s.key)}
             onMouseEnter={() => onHover(s.key)}
             onMouseLeave={() => onHover(null)}
-            className={[
-              'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs select-none',
-              'border transition-all duration-150 cursor-pointer',
-              on ? 'border-gray-200 bg-white text-gray-700' : 'border-gray-100 bg-gray-50 text-gray-400',
-            ].join(' ')}
             style={{ opacity: hovered && hovered !== s.key ? 0.45 : 1 }}
+            className={[
+              'inline-flex items-center gap-1.5 px-2 py-0.5 font-mono text-[10px] select-none',
+              'border transition-all duration-150 cursor-pointer',
+              on ? 'border-terminal-border bg-terminal-panel text-terminal-text' : 'border-terminal-border bg-terminal-bg text-terminal-dim',
+            ].join(' ')}
           >
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: on ? s.color : '#D1D5DB' }} />
-            {s.label}
+            <span className="w-2 h-2 flex-shrink-0" style={{ background: on ? s.color : '#3a3a3a' }} />
+            {s.label.toUpperCase()}
           </button>
         )
       })}
@@ -75,8 +60,8 @@ function SeriesToggle({
 }
 
 const SERIES: SeriesMeta[] = [
-  { key: 'favorite', label: 'Favorite',  color: C_FAV },
-  { key: 'underdog', label: 'Underdog',  color: C_UND },
+  { key: 'favorite', label: 'Favorite', color: C_FAVORITE },
+  { key: 'underdog', label: 'Underdog', color: C_UNDERDOG },
 ]
 
 interface Props { data: DeltaMinuteRow[] }
@@ -94,26 +79,21 @@ export default function DeltaByMinuteChart({ data }: Props) {
     const pt = chartData.find(d => d.min_bin === label)
     if (!pt) return null
     return (
-      <div className="bg-white border border-[rgba(0,14,84,0.3)] rounded-lg shadow-md px-3 py-2.5 text-xs min-w-[160px]">
-        <p className="font-semibold text-gray-800 mb-1.5">{label} min</p>
+      <div className="bg-[#161616] border border-[#2a2a2a] px-2.5 py-2 font-mono text-[11px] min-w-[160px]">
+        <p className="text-terminal-muted mb-1.5">{label} MIN</p>
         {pt.favorite != null && (
-          <div className="flex items-center gap-1.5 text-gray-600">
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: C_FAV }} />
-            Favorite: <span className="font-mono font-medium ml-1">{pt.favorite.toFixed(3)}</span>
-            <span className="text-gray-400 ml-auto">(n={pt.favN})</span>
+          <div className="flex justify-between gap-4">
+            <span style={{ color: C_FAVORITE }}>FAVORITE</span>
+            <span className="text-terminal-text">{pt.favorite.toFixed(3)} <span className="text-terminal-dim">n={pt.favN}</span></span>
           </div>
         )}
         {pt.underdog != null ? (
-          <div className="flex items-center gap-1.5 text-gray-600 mt-0.5">
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: C_UND }} />
-            Underdog: <span className="font-mono font-medium ml-1">{pt.underdog.toFixed(3)}</span>
-            <span className="text-gray-400 ml-auto">(n={pt.undN})</span>
+          <div className="flex justify-between gap-4 mt-0.5">
+            <span style={{ color: C_UNDERDOG }}>UNDERDOG</span>
+            <span className="text-terminal-text">{pt.underdog.toFixed(3)} <span className="text-terminal-dim">n={pt.undN}</span></span>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 text-gray-400 mt-0.5 italic">
-            <span className="w-2 h-2 rounded-full flex-shrink-0 bg-gray-200" />
-            Underdog: no data
-          </div>
+          <div className="text-terminal-dim mt-0.5">UNDERDOG  NO DATA</div>
         )}
       </div>
     )
@@ -123,55 +103,21 @@ export default function DeltaByMinuteChart({ data }: Props) {
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 420 }}>
         <SeriesToggle series={SERIES} visible={visible} hovered={hovered} onToggle={toggle} onHover={setHovered} />
-        <div className="h-[240px] sm:h-[360px]">
+        <div className="h-[240px] sm:h-[340px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 8, right: 28, bottom: 24, left: 16 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke={GRID_STROKE} vertical={false} />
-              <XAxis
-                dataKey="min_bin"
-                tick={TICK_STYLE}
-                tickLine={false}
-                axisLine={AXIS_LINE}
-                label={{ value: 'Match minute (bin)', position: 'insideBottom', offset: -14, fontSize: 11, fill: LABEL_FILL }}
-              />
-              <YAxis
-                domain={[0, 0.85]}
-                tickFormatter={(v: number) => v.toFixed(2)}
-                tick={TICK_STYLE}
-                tickLine={false}
-                axisLine={false}
-                width={40}
-                label={{ value: 'Median Δ', angle: -90, position: 'insideLeft', offset: 4, fontSize: 11, fill: LABEL_FILL }}
-              />
+            <LineChart data={chartData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
+              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+              <XAxis dataKey="min_bin" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
+                label={{ value: 'MATCH MINUTE', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
+              <YAxis domain={[0, 0.85]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
+                label={{ value: 'MEDIAN Δ', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
               <Tooltip content={tooltipContent} cursor={CURSOR_LINE} />
-              <Line
-                type="monotone"
-                dataKey="favorite"
-                name="Favorite"
-                stroke={C_FAV}
-                strokeWidth={2}
-                opacity={dim('favorite')}
-                hide={!visible.favorite}
-                dot={{ r: 3.5, fill: C_FAV, strokeWidth: 0 }}
-                activeDot={{ r: 5, strokeWidth: 0 }}
-                connectNulls={false}
-                onMouseEnter={() => setHovered('favorite')}
-                onMouseLeave={() => setHovered(null)}
-              />
-              <Line
-                type="monotone"
-                dataKey="underdog"
-                name="Underdog"
-                stroke={C_UND}
-                strokeWidth={2.5}
-                opacity={dim('underdog')}
-                hide={!visible.underdog}
-                dot={{ r: 3.5, fill: C_UND, strokeWidth: 0 }}
-                activeDot={{ r: 5, strokeWidth: 0 }}
-                connectNulls={false}
-                onMouseEnter={() => setHovered('underdog')}
-                onMouseLeave={() => setHovered(null)}
-              />
+              <Line type="monotone" dataKey="favorite" stroke={C_FAVORITE} strokeWidth={1.6} opacity={dim('favorite')} hide={!visible.favorite}
+                dot={{ r: 3, fill: C_FAVORITE, strokeWidth: 0 }} activeDot={{ r: 4, strokeWidth: 0 }} connectNulls={false}
+                onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)} />
+              <Line type="monotone" dataKey="underdog" stroke={C_UNDERDOG} strokeWidth={1.6} opacity={dim('underdog')} hide={!visible.underdog}
+                dot={{ r: 3, fill: C_UNDERDOG, strokeWidth: 0 }} activeDot={{ r: 4, strokeWidth: 0 }} connectNulls={false}
+                onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)} />
             </LineChart>
           </ResponsiveContainer>
         </div>

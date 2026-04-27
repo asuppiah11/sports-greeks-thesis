@@ -1,42 +1,24 @@
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Cell,
-  ErrorBar,
-  ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ErrorBar, ResponsiveContainer,
 } from 'recharts'
 import type { TooltipProps } from 'recharts'
 import type { OverreactionRow } from '../../types'
-import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL } from '../../lib/chartTheme'
+import { GRID_STROKE, AXIS_LINE, TICK_STYLE, LABEL_FILL, C_UNDERDOG, C_FAVORITE, C_DIM } from '../../lib/chartTheme'
 
-const COLORS = ['#9CA3AF', '#000E54', '#F76900']
+const COLORS = [C_DIM, C_FAVORITE, C_UNDERDOG]
 
 interface ChartPoint {
-  group: string
-  median_overshoot: number
-  error: [number, number]
-  n: number; pct_positive: number
-  ci_lo: number; ci_hi: number
+  group: string; median_overshoot: number; error: [number, number]
+  n: number; pct_positive: number; ci_lo: number; ci_hi: number
 }
 
 interface Props { data: OverreactionRow[] }
 
 export default function OverreactionChart({ data }: Props) {
   const chartData: ChartPoint[] = data.map(d => ({
-    group: d.group,
-    median_overshoot: d.median_overshoot,
-    error: [
-      +(d.median_overshoot - d.ci_lo_95).toFixed(4),
-      +(d.ci_hi_95 - d.median_overshoot).toFixed(4),
-    ],
-    n: d.n,
-    pct_positive: d.pct_positive,
-    ci_lo: d.ci_lo_95,
-    ci_hi: d.ci_hi_95,
+    group: d.group, median_overshoot: d.median_overshoot,
+    error: [+(d.median_overshoot - d.ci_lo_95).toFixed(4), +(d.ci_hi_95 - d.median_overshoot).toFixed(4)],
+    n: d.n, pct_positive: d.pct_positive, ci_lo: d.ci_lo_95, ci_hi: d.ci_hi_95,
   }))
 
   const tooltipContent = ({ active, payload, label }: TooltipProps<number, string>) => {
@@ -44,52 +26,31 @@ export default function OverreactionChart({ data }: Props) {
     const pt = chartData.find(d => d.group === label)
     if (!pt) return null
     return (
-      <div className="bg-white border border-[rgba(0,14,84,0.3)] rounded-lg shadow-md px-3 py-2.5 text-xs min-w-[195px]">
-        <p className="font-semibold text-gray-800 mb-1.5">{pt.group}</p>
-        <p className="mb-1" style={{ color: 'rgba(0,14,84,0.45)' }}>n = {pt.n}</p>
-        <p>
-          Median overshoot:{' '}
-          <span className="font-mono font-semibold" style={{ color: '#000E54' }}>
-            {pt.median_overshoot.toFixed(3)}
-          </span>
-        </p>
-        <p className="mt-0.5" style={{ color: 'rgba(0,14,84,0.5)' }}>
-          95% CI: [{pt.ci_lo.toFixed(3)}, {pt.ci_hi.toFixed(3)}]
-        </p>
-        <p className="mt-0.5" style={{ color: 'rgba(0,14,84,0.5)' }}>
-          % positive: {pt.pct_positive.toFixed(1)}%
-        </p>
+      <div className="bg-[#161616] border border-[#2a2a2a] px-2.5 py-2 font-mono text-[11px] min-w-[195px]">
+        <p className="text-terminal-muted mb-1.5">{pt.group.toUpperCase()}</p>
+        <div className="space-y-0.5">
+          <div className="flex justify-between gap-4"><span className="text-terminal-dim">N</span><span className="text-terminal-text">{pt.n}</span></div>
+          <div className="flex justify-between gap-4"><span className="text-terminal-dim">MEDIAN OVERSHOOT</span><span className="text-terminal-text font-semibold">{pt.median_overshoot.toFixed(3)}</span></div>
+          <div className="flex justify-between gap-4"><span className="text-terminal-dim">95% CI</span><span className="text-terminal-text">[{pt.ci_lo.toFixed(3)}, {pt.ci_hi.toFixed(3)}]</span></div>
+          <div className="flex justify-between gap-4"><span className="text-terminal-dim">% POSITIVE</span><span className="text-terminal-text">{pt.pct_positive.toFixed(1)}%</span></div>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="overflow-x-auto -mx-1">
-      <div style={{ minWidth: 340 }} className="h-[260px] sm:h-[360px]">
+      <div style={{ minWidth: 340 }} className="h-[240px] sm:h-[340px]">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData} margin={{ top: 8, right: 28, bottom: 8, left: 16 }} barCategoryGap="40%">
-            <CartesianGrid strokeDasharray="3 3" stroke={GRID_STROKE} vertical={false} />
-            <XAxis
-              dataKey="group"
-              tick={TICK_STYLE}
-              tickLine={false}
-              axisLine={AXIS_LINE}
-            />
-            <YAxis
-              domain={[0, 0.4]}
-              tickFormatter={(v: number) => v.toFixed(2)}
-              tick={TICK_STYLE}
-              tickLine={false}
-              axisLine={false}
-              width={40}
-              label={{ value: 'Median overshoot', angle: -90, position: 'insideLeft', offset: 4, fontSize: 11, fill: LABEL_FILL }}
-            />
-            <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(0,14,84,0.04)' }} />
-            <Bar dataKey="median_overshoot" radius={[4, 4, 0, 0]} maxBarSize={80}>
-              {chartData.map((_, i) => (
-                <Cell key={i} fill={COLORS[i] ?? '#9CA3AF'} />
-              ))}
-              <ErrorBar dataKey="error" width={8} strokeWidth={1.5} stroke="#374151" direction="y" />
+          <BarChart data={chartData} margin={{ top: 8, right: 20, bottom: 8, left: 8 }} barCategoryGap="40%">
+            <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+            <XAxis dataKey="group" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE} />
+            <YAxis domain={[0, 0.4]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
+              label={{ value: 'MEDIAN OVERSHOOT', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
+            <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+            <Bar dataKey="median_overshoot" radius={[0,0,0,0]} maxBarSize={80}>
+              {chartData.map((_, i) => <Cell key={i} fill={COLORS[i] ?? C_DIM} />)}
+              <ErrorBar dataKey="error" width={6} strokeWidth={1.2} stroke="#8a8a8a" direction="y" />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

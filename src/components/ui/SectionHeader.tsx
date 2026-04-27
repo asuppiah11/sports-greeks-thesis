@@ -9,14 +9,14 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ icon: Icon, title, summary }: SectionHeaderProps) {
   return (
-    <div className="mb-10">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-syracuse-navy/10 text-syracuse-navy">
-          <Icon size={17} strokeWidth={2} />
+    <div className="mb-6">
+      <div className="flex items-center gap-2.5 mb-2">
+        <div className="flex items-center justify-center w-7 h-7 border border-terminal-border bg-terminal-panel text-terminal-cyan">
+          <Icon size={14} strokeWidth={1.5} />
         </div>
-        <h2 className="text-xl font-bold text-gray-900">{title}</h2>
+        <h2 className="font-sans text-base font-bold text-terminal-text">{title}</h2>
       </div>
-      <p className="text-sm text-gray-500 max-w-2xl leading-relaxed">{summary}</p>
+      <p className="font-sans text-xs text-terminal-muted max-w-2xl leading-relaxed">{summary}</p>
     </div>
   )
 }

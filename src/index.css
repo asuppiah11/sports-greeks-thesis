@@ -11,7 +11,7 @@
   body {
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
     line-height: 1.45;
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-terminal-bg text-terminal-text antialiased;
   }
 
   h1, h2, h3, h4 {

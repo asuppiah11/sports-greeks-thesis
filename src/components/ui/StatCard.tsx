@@ -10,12 +10,12 @@ export default function StatCard({ value, label, description, pValue, href }: St
   return (
     <a
       href={href}
-      className="group block rounded-xl border border-gray-100 bg-gray-50 hover:bg-white hover:border-syracuse-orange/40 hover:shadow-sm p-6 transition-all"
+      className="group block border border-terminal-border bg-terminal-panel hover:border-terminal-orange/40 hover:bg-terminal-bg p-5 transition-colors"
     >
-      <div className="text-4xl font-bold text-syracuse-orange mb-2 tracking-tight">{value}</div>
-      <div className="text-sm font-semibold text-gray-800 mb-1">{label}</div>
-      <div className="text-sm text-gray-500 leading-snug mb-3">{description}</div>
-      <div className="text-xs font-mono text-gray-400">{pValue}</div>
+      <div className="font-mono tabular text-4xl font-bold text-terminal-orange mb-2 tracking-tight">{value}</div>
+      <div className="font-sans text-xs font-semibold text-terminal-text mb-1">{label}</div>
+      <div className="font-sans text-xs text-terminal-muted leading-snug mb-3">{description}</div>
+      <div className="font-mono text-[10px] text-terminal-dim">{pValue}</div>
     </a>
   )
 }

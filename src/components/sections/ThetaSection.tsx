@@ -10,7 +10,7 @@ import type { ThetaParamsRow, ThetaAccelRow } from '../../types'
 
 export default function ThetaSection() {
   return (
-    <section id="theta" className="section-scroll-mt pt-16 pb-8">
+    <section id="theta" className="section-scroll-mt pt-8 pb-4">
       <SectionHeader
         icon={Clock}
         title="Theta — Time Decay in Scoreless Intervals"
@@ -23,6 +23,7 @@ export default function ThetaSection() {
       />
 
       <ChartPanel
+        panelId="Θ.A"
         title="Panel A — Exponential Hazard Parameters"
         caption={
           'Fitted parameters from P(Δ in [t, t+dt]) = a·e^(bt)·dt estimated via non-linear least squares ' +
@@ -36,6 +37,7 @@ export default function ThetaSection() {
       </ChartPanel>
 
       <ChartPanel
+        panelId="Θ.B"
         title="Panel B — Early vs. Final-Third Theta (Wilcoxon Signed-Rank)"
         annotation="Draw probability rises 4.50× faster in the final third of pure 0-0 matches, and 3.34× faster in pre-first-goal segments (both p ≈ 0)."
         caption={
@@ -50,13 +52,14 @@ export default function ThetaSection() {
       </ChartPanel>
 
       <ChartPanel
+        panelId="Θ.C"
         title="Panel C — Fitted Exponential Curves P(t) = a · e^(bt)"
         annotation="Group A's curve rises steeply from ≈0.25 to ≈0.65 over 90 minutes; Group B rises gently from ≈0.30 to ≈0.34."
         caption={
           'Curves computed from the fitted parameters in Panel A. ' +
-          'Group A (teal, solid) represents matches that remained goalless throughout — ' +
+          'Group A (orange, solid) represents matches that remained goalless throughout — ' +
           'as the full 90 minutes elapses without a goal, the instantaneous goal probability rises sharply. ' +
-          'Group B (gray, dashed) covers pre-first-goal segments across all match types — the curve is ' +
+          'Group B (blue, dashed) covers pre-first-goal segments across all match types — the curve is ' +
           'shallower because many of these segments end early. ' +
           'The divergence between the two curves illustrates context-dependence: a truly goalless match ' +
           'produces far stronger time-pressure than a segment that might end at any minute.'

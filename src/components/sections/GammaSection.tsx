@@ -10,7 +10,7 @@ export default function GammaSection() {
   const data = gammaHeatmap as GammaHeatmapRow[]
 
   return (
-    <section id="gamma" className="section-scroll-mt pt-16 pb-8">
+    <section id="gamma" className="section-scroll-mt pt-8 pb-4">
       <SectionHeader
         icon={Zap}
         title="Gamma — Convexity of Price Response"
@@ -24,6 +24,7 @@ export default function GammaSection() {
       />
 
       <ChartPanel
+        panelId="Γ.A"
         title="Panel A — Delta by Minute Bin and Score Differential"
         annotation="Peak market explosiveness: median Δ = 0.531 at 75–90 min in tied matches."
         caption={
@@ -31,7 +32,7 @@ export default function GammaSection() {
           '(minute bin × score differential) combination. Score differential is measured from ' +
           'the scoring team\'s perspective at the moment of the goal (0 = tied, +1 = scoring team ' +
           'already leads, −1 = scoring team trails). ' +
-          'Darker teal = larger price response. ' +
+          'Darker orange = larger price response. ' +
           'Cells marked * have n < 10 and are shown at reduced opacity — hover for exact counts. ' +
           'The peak cell (75–90, tied) is outlined.'
         }
@@ -40,6 +41,7 @@ export default function GammaSection() {
       </ChartPanel>
 
       <ChartPanel
+        panelId="Γ.B"
         title="Panel B — Gamma Gradient: Tied-Match Delta Across Match Time"
         annotation="In tied matches, median Delta rises monotonically from 0.163 (0–15 min) to 0.531 (75–90 min) — a 3.26× increase."
         caption={

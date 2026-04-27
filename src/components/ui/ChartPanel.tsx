@@ -5,6 +5,7 @@ interface ChartPanelProps {
   annotation?: string
   caption: ReactNode
   children: ReactNode
+  panelId?: string
 }
 
 export default function ChartPanel({
@@ -12,15 +13,23 @@ export default function ChartPanel({
   annotation,
   caption,
   children,
+  panelId,
 }: ChartPanelProps) {
   return (
-    <div className="rounded-xl border border-gray-100 bg-white p-6 sm:p-8 mb-6">
-      <h3 className="text-base font-semibold text-gray-900 mb-1">{title}</h3>
+    <div className="border border-terminal-border bg-terminal-panel p-4 mb-4">
+      <div className="flex items-start gap-2 mb-1">
+        {panelId && (
+          <span className="font-mono text-[9px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 flex-shrink-0 mt-0.5">
+            {panelId}
+          </span>
+        )}
+        <h3 className="font-sans text-sm font-semibold text-terminal-text">{title}</h3>
+      </div>
       {annotation && (
-        <p className="text-sm text-syracuse-navy font-medium mb-5 max-w-2xl">{annotation}</p>
+        <p className="font-sans text-xs text-terminal-cyan font-medium mb-3 max-w-2xl">{annotation}</p>
       )}
-      <div className="mt-4">{children}</div>
-      <p className="mt-5 text-xs text-gray-400 leading-relaxed border-t border-gray-50 pt-4">
+      <div className="mt-3">{children}</div>
+      <p className="mt-4 font-sans text-[11px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-3">
         {caption}
       </p>
     </div>

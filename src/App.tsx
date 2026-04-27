@@ -17,7 +17,7 @@ const NAV_SECTIONS = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-terminal-bg">
       <Header />
       <Nav sections={NAV_SECTIONS} />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">

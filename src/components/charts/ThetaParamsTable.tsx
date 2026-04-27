@@ -1,8 +1,6 @@
 import type { ThetaParamsRow } from '../../types'
 
-interface Props {
-  data: ThetaParamsRow[]
-}
+interface Props { data: ThetaParamsRow[] }
 
 function fmt(v: number | null, decimals = 5): string {
   if (v === null) return '—'
@@ -22,74 +20,48 @@ export default function ThetaParamsTable({ data }: Props) {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-sm border-collapse">
+      <table className="w-full font-mono text-[11px] border-collapse">
         <thead>
-          <tr className="border-b border-gray-200">
-            <th className="text-left py-2.5 pr-4 font-semibold text-gray-700 text-xs uppercase tracking-wide w-8">
-              Grp
-            </th>
-            <th className="text-left py-2.5 pr-6 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              Description
-            </th>
-            <th className="text-right py-2.5 px-3 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              n
-            </th>
-            <th className="text-right py-2.5 px-3 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              a
-            </th>
-            <th className="text-right py-2.5 px-3 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              SE(a)
-            </th>
-            <th className="text-right py-2.5 px-3 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              b
-            </th>
-            <th className="text-right py-2.5 pl-3 font-semibold text-gray-700 text-xs uppercase tracking-wide">
-              SE(b)
-            </th>
+          <tr className="border-b border-terminal-border">
+            <th className="text-left py-2 pr-3 text-[9px] uppercase tracking-wide text-terminal-dim w-6">GRP</th>
+            <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim">DESCRIPTION</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">N</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">a</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">SE(a)</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">b</th>
+            <th className="text-right py-2 pl-2 text-[9px] uppercase tracking-wide text-terminal-dim">SE(b)</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-50">
+        <tbody className="divide-y divide-terminal-border">
           {rows.map(row => {
             const meta = GROUP_META[row.group]
             return (
-              <tr key={row.group} className="hover:bg-gray-50">
-                <td className="py-3 pr-4 font-semibold text-syracuse-orange font-mono text-sm">
-                  {meta.shortName}
-                </td>
-                <td className="py-3 pr-6 text-gray-600 text-xs leading-snug">{meta.description}</td>
-                <td className="py-3 px-3 text-right font-mono text-gray-700">
-                  {row.n_segments}
-                </td>
-                <td className="py-3 px-3 text-right font-mono text-gray-700">
-                  {fmt(row.a_fit)}
-                </td>
-                <td className="py-3 px-3 text-right font-mono text-gray-400 text-xs">
-                  {fmt(row.SE_a)}
-                </td>
-                <td className="py-3 px-3 text-right font-mono text-gray-700">
-                  {fmt(row.b_fit)}
-                </td>
-                <td className="py-3 pl-3 text-right font-mono text-gray-400 text-xs">
-                  {fmt(row.SE_b, 6)}
-                </td>
+              <tr key={row.group} className="hover:bg-terminal-bg transition-colors">
+                <td className="py-2.5 pr-3 font-semibold text-terminal-orange">{meta.shortName}</td>
+                <td className="py-2.5 pr-4 text-terminal-muted text-[10px] leading-snug">{meta.description}</td>
+                <td className="py-2.5 px-2 text-right text-terminal-text">{row.n_segments}</td>
+                <td className="py-2.5 px-2 text-right text-terminal-text">{fmt(row.a_fit)}</td>
+                <td className="py-2.5 px-2 text-right text-terminal-dim text-[10px]">{fmt(row.SE_a)}</td>
+                <td className="py-2.5 px-2 text-right text-terminal-text">{fmt(row.b_fit)}</td>
+                <td className="py-2.5 pl-2 text-right text-terminal-dim text-[10px]">{fmt(row.SE_b, 6)}</td>
               </tr>
             )
           })}
         </tbody>
         {poisson && (
           <tfoot>
-            <tr className="border-t border-gray-200">
-              <td className="py-3 pr-4 font-mono text-gray-400 text-xs">—</td>
-              <td className="py-3 pr-6 text-gray-400 text-xs">Poisson baseline</td>
-              <td colSpan={5} className="py-3 px-3 text-right font-mono text-gray-500 text-xs">
+            <tr className="border-t border-terminal-border">
+              <td className="py-2 pr-3 text-terminal-dim text-[10px]">—</td>
+              <td className="py-2 pr-4 text-terminal-dim text-[10px]">Poisson baseline</td>
+              <td colSpan={5} className="py-2 px-2 text-right text-terminal-muted text-[10px]">
                 λ = {poisson.lambda?.toFixed(3)}
               </td>
             </tr>
           </tfoot>
         )}
       </table>
-      <p className="mt-2 text-xs text-gray-400 italic">
-        Model: P(Δ in [t, t+dt]) = a · e<sup>bt</sup> · dt — exponential hazard fit to scoreless-interval goal-scoring rates.
+      <p className="mt-2 font-mono text-[9px] text-terminal-dim italic">
+        MODEL: P(Δ in [t, t+dt]) = a · e<sup>bt</sup> · dt — exponential hazard fit to scoreless-interval goal-scoring rates.
       </p>
     </div>
   )

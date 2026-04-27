@@ -11,7 +11,7 @@ import type { ReactionSpeedRow, OverreactionRow, CalibrationRow } from '../../ty
 
 export default function MarketSection() {
   return (
-    <section id="market" className="section-scroll-mt pt-16 pb-8">
+    <section id="market" className="section-scroll-mt pt-8 pb-4">
       <SectionHeader
         icon={Activity}
         title="Market Behavior — Efficiency, Speed, and Bias"
@@ -24,12 +24,13 @@ export default function MarketSection() {
       />
 
       <ChartPanel
+        panelId="M.A"
         title="Panel A — Time-to-Equilibrium by League and Event Type"
         annotation="Markets reach post-goal equilibrium in a median of 102 seconds. No significant league differences (Kruskal-Wallis p = 0.332)."
         caption={
           'Time-to-equilibrium (TTE) is defined as the time from a goal until the price stabilizes ' +
           'within a 5% band of its final post-event level. ' +
-          'Underdog goals (teal) take substantially longer to resolve than favorite goals (dark gray) ' +
+          'Underdog goals (orange) take substantially longer to resolve than favorite goals (blue) ' +
           'across all leagues — consistent with greater uncertainty about the new equilibrium price. ' +
           'The dashed line marks the overall median (102s). ' +
           'The absence of inter-league differences suggests these dynamics are not league-specific but ' +
@@ -40,6 +41,7 @@ export default function MarketSection() {
       </ChartPanel>
 
       <ChartPanel
+        panelId="M.B"
         title="Panel B — Post-Goal Overshoot by Event Type"
         annotation="97.75% of goals exhibit post-goal overshoot. Favorite goals paradoxically overshoot more than underdog goals — consistent with representativeness bias."
         caption={
@@ -56,6 +58,7 @@ export default function MarketSection() {
       </ChartPanel>
 
       <ChartPanel
+        panelId="M.C"
         title="Panel C — Calibration at Kickoff (Favorite-Longshot Bias Test)"
         annotation="χ² = 1.62, p = 0.805 — Betfair exchange prices at kickoff are well-calibrated. No favorite-longshot bias detected."
         caption={

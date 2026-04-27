@@ -32,8 +32,8 @@ const FINDINGS = [
 
 export default function FindingsGlance() {
   return (
-    <section className="py-4 border-b border-terminal-border">
-      {/* Section header */}
+    <div className="py-4 px-4 lg:px-5">
+      {/* Section label row */}
       <div className="flex items-center gap-3 mb-3">
         <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim">
           Findings at a Glance
@@ -42,21 +42,12 @@ export default function FindingsGlance() {
         <span className="font-mono text-[9px] text-terminal-dim">N=1465</span>
       </div>
 
-      {/* KPI grid — flush borders, no gap */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 border border-terminal-border">
-        {FINDINGS.map((f, i) => (
-          <div
-            key={f.label}
-            className={[
-              i < FINDINGS.length - 1
-                ? 'border-b sm:border-b-0 sm:border-r border-terminal-border'
-                : '',
-            ].join('')}
-          >
-            <StatCard {...f} />
-          </div>
+      {/* KPI strips — vertical stack, each card horizontal */}
+      <div className="border border-terminal-border divide-y divide-terminal-border">
+        {FINDINGS.map(f => (
+          <StatCard key={f.label} {...f} horizontal />
         ))}
       </div>
-    </section>
+    </div>
   )
 }

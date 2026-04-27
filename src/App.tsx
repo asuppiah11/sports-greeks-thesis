@@ -2,8 +2,7 @@ import Header from './components/layout/Header'
 import Nav from './components/layout/Nav'
 import StatusBar from './components/layout/StatusBar'
 import CommandBar from './components/layout/CommandBar'
-import FindingsGlance from './components/layout/FindingsGlance'
-import PoissonCalculator from './components/layout/PoissonCalculator'
+import ModelSection from './components/layout/ModelSection'
 import DeltaSection from './components/sections/DeltaSection'
 import ThetaSection from './components/sections/ThetaSection'
 import GammaSection from './components/sections/GammaSection'
@@ -24,8 +23,7 @@ export default function App() {
       <Header />
       <Nav sections={NAV_SECTIONS} />
       <main className="w-full px-6 lg:px-8 pb-16">
-        <FindingsGlance />
-        <PoissonCalculator />
+        <ModelSection />
         <DeltaSection />
         <ThetaSection />
         <GammaSection />

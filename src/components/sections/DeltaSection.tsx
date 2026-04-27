@@ -26,11 +26,15 @@ export default function DeltaSection() {
         title="Panel A — Median Delta by Match Minute"
         annotation="Underdog goals produce 2.01× the price response of favorite goals, and this gap is stable across match minute."
         stats={[
-          { label: 'UND MEDIAN Δ', value: '0.528', accent: '#ff8a1a' },
-          { label: 'FAV MEDIAN Δ', value: '0.262', accent: '#4ec9ff' },
-          { label: 'RATIO',        value: '2.01×',  accent: '#ff8a1a' },
-          { label: 'N GOALS',      value: '1,212' },
-          { label: 'P-VALUE',      value: '4.7×10⁻²¹' },
+          { label: 'N FAV GOALS',   value: '1,049' },
+          { label: 'N UND GOALS',   value: '163' },
+          { label: 'FAV MEDIAN Δ',  value: '0.262',        accent: '#4ec9ff' },
+          { label: 'FAV 95% CI',    value: '0.247–0.273' },
+          { label: 'UND MEDIAN Δ',  value: '0.528',        accent: '#ff8a1a' },
+          { label: 'UND 95% CI',    value: '0.489–0.563' },
+          { label: 'RATIO',         value: '2.01×',        accent: '#ff8a1a' },
+          { label: 'U STATISTIC',   value: '53,883' },
+          { label: 'P-VALUE',       value: '4.7×10⁻²¹' },
         ]}
         caption={
           'Each point is the median absolute price change (Delta) for all goals scored in that 15-minute bin. ' +
@@ -50,11 +54,14 @@ export default function DeltaSection() {
         title="Panel B — Median Delta by Pre-Goal Odds"
         annotation="Delta scales monotonically with pre-goal odds, from 0.15 for near-certainties to 0.66 for heavy underdogs."
         stats={[
-          { label: 'ODDS 1.0–1.5', value: '0.153' },
-          { label: 'ODDS 3.0–5.0', value: '0.510' },
-          { label: 'ODDS 5.0–10+', value: '0.659', accent: '#ff8a1a' },
-          { label: 'RANGE',        value: '4.31×',  accent: '#ff8a1a' },
           { label: 'N GOALS',      value: '1,212' },
+          { label: 'ODDS 1.0–1.5', value: '0.153  (n=369)' },
+          { label: 'ODDS 1.5–2.0', value: '0.255  (n=294)' },
+          { label: 'ODDS 2.0–3.0', value: '0.381  (n=294)' },
+          { label: 'ODDS 3.0–5.0', value: '0.510  (n=160)', accent: '#ff8a1a' },
+          { label: 'ODDS 5.0–10',  value: '0.659  (n=63)',  accent: '#ff8a1a' },
+          { label: 'ODDS 10.0+',   value: '0.652  (n=32)',  accent: '#ff8a1a' },
+          { label: 'SPREAD',       value: '4.31×',          accent: '#ff8a1a' },
         ]}
         caption={
           'Goals are grouped by the scorer\'s decimal odds at the moment before the goal. ' +

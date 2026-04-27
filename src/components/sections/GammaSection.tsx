@@ -28,11 +28,15 @@ export default function GammaSection() {
         title="Panel A — Delta by Minute Bin and Score Differential"
         annotation="Peak market explosiveness: median Δ = 0.531 at 75–90 min in tied matches."
         stats={[
-          { label: 'PEAK Δ',    value: '0.531',   accent: '#ff8a1a' },
+          { label: 'EARLY n',   value: '283' },
+          { label: 'LATE n',    value: '220' },
+          { label: 'EARLY MED Δ', value: '0.191' },
+          { label: 'LATE MED Δ',  value: '0.509',  accent: '#ff8a1a' },
+          { label: 'PEAK Δ',    value: '0.531',    accent: '#ff8a1a' },
           { label: 'PEAK CELL', value: '75–90, 0', accent: '#ff8a1a' },
-          { label: 'EARLY AVG', value: '0.191' },
-          { label: 'RATIO',     value: '2.67×',   accent: '#ff8a1a' },
+          { label: 'U STATISTIC', value: '22,367' },
           { label: 'P-VALUE',   value: '1.8×10⁻³⁴' },
+          { label: 'RATIO',     value: '2.67×',    accent: '#ff8a1a' },
         ]}
         caption={
           'Each cell shows the median absolute price change (Delta) for goals scored in that ' +
@@ -52,11 +56,14 @@ export default function GammaSection() {
         title="Panel B — Gamma Gradient: Tied-Match Delta Across Match Time"
         annotation="In tied matches, median Delta rises monotonically from 0.163 (0–15 min) to 0.531 (75–90 min) — a 3.26× increase."
         stats={[
+          { label: 'N TIED GOALS', value: '952' },
           { label: '0–15 MIN Δ',   value: '0.163' },
           { label: '75–90 MIN Δ',  value: '0.531', accent: '#ff8a1a' },
           { label: '90+ MIN Δ',    value: '0.693', accent: '#ff8a1a' },
-          { label: 'INCREASE',     value: '3.26×', accent: '#ff8a1a' },
+          { label: 'N (0–15)',     value: '87' },
           { label: 'N (75–90)',    value: '114' },
+          { label: 'N (90+)',      value: '46' },
+          { label: 'INCREASE',     value: '3.26×', accent: '#ff8a1a' },
         ]}
         caption={
           'This panel isolates the score_diff = 0 row from the heatmap and plots it as a time series. ' +

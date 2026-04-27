@@ -26,11 +26,14 @@ export default function ThetaSection() {
         panelId="Θ.A"
         title="Panel A — Exponential Hazard Parameters"
         stats={[
-          { label: 'GRP A b',  value: '0.01053',  accent: '#ff8a1a' },
-          { label: 'GRP B b',  value: '0.00153',  accent: '#4ec9ff' },
-          { label: 'GRP C b',  value: '−0.02312' },
-          { label: 'RATIO b',  value: '6.88×',    accent: '#ff8a1a' },
-          { label: 'λ POISSON', value: '1.160/match' },
+          { label: 'GRP A n',    value: '73' },
+          { label: 'GRP B n',    value: '742' },
+          { label: 'GRP A a',    value: '0.25311',       accent: '#ff8a1a' },
+          { label: 'GRP A b',    value: '0.01053',       accent: '#ff8a1a' },
+          { label: 'GRP B b',    value: '0.00153',       accent: '#4ec9ff' },
+          { label: 'GRP C b',    value: '−0.02312' },
+          { label: 'RATIO b',    value: '6.88×',         accent: '#ff8a1a' },
+          { label: 'λ POISSON',  value: '1.160/match' },
         ]}
         caption={
           'Fitted parameters from P(Δ in [t, t+dt]) = a·e^(bt)·dt estimated via non-linear least squares ' +
@@ -48,11 +51,14 @@ export default function ThetaSection() {
         title="Panel B — Early vs. Final-Third Theta (Wilcoxon Signed-Rank)"
         annotation="Draw probability rises 4.50× faster in the final third of pure 0-0 matches, and 3.34× faster in pre-first-goal segments (both p ≈ 0)."
         stats={[
-          { label: 'GRP A RATIO', value: '4.50×', accent: '#ff8a1a' },
-          { label: 'GRP B RATIO', value: '3.34×', accent: '#4ec9ff' },
-          { label: 'GRP A LATE θ', value: '8.05×10⁻³' },
-          { label: 'GRP B LATE θ', value: '4.57×10⁻³' },
-          { label: 'P-VALUE',      value: '≈ 0' },
+          { label: 'GRP A n',      value: '73' },
+          { label: 'GRP B n',      value: '386' },
+          { label: 'GRP A EARLY θ', value: '1.79×10⁻³' },
+          { label: 'GRP A LATE θ',  value: '8.05×10⁻³', accent: '#ff8a1a' },
+          { label: 'GRP A RATIO',   value: '4.50×',      accent: '#ff8a1a' },
+          { label: 'GRP B RATIO',   value: '3.34×',      accent: '#4ec9ff' },
+          { label: 'W STATISTIC',   value: '1,039' },
+          { label: 'P-VALUE',       value: '4.1×10⁻¹⁰' },
         ]}
         caption={
           'For each match segment, Theta was estimated for the first two-thirds of the scoreless interval ' +
@@ -70,10 +76,13 @@ export default function ThetaSection() {
         title="Panel C — Fitted Exponential Curves P(t) = a · e^(bt)"
         annotation="Group A's curve rises steeply from ≈0.25 to ≈0.65 over 90 minutes; Group B rises gently from ≈0.30 to ≈0.34."
         stats={[
+          { label: 'GRP A a',    value: '0.25311',   accent: '#ff8a1a' },
+          { label: 'GRP A b',    value: '0.01053',   accent: '#ff8a1a' },
+          { label: 'GRP A SE(b)', value: '±0.000199' },
           { label: 'GRP A t=0',  value: '0.253/min', accent: '#ff8a1a' },
           { label: 'GRP A t=90', value: '0.653/min', accent: '#ff8a1a' },
-          { label: 'GRP B t=0',  value: '0.301/min', accent: '#4ec9ff' },
-          { label: 'GRP B t=90', value: '0.345/min', accent: '#4ec9ff' },
+          { label: 'GRP B b',    value: '0.00153',   accent: '#4ec9ff' },
+          { label: 'GRP B SE(b)', value: '±0.00111' },
           { label: 'DIVERGE AT', value: '~45 MIN' },
         ]}
         caption={

@@ -28,9 +28,12 @@ export default function MarketSection() {
         title="Panel A — Time-to-Equilibrium by League and Event Type"
         annotation="Markets reach post-goal equilibrium in a median of 102 seconds. No significant league differences (Kruskal-Wallis p = 0.332)."
         stats={[
+          { label: 'N GOALS',     value: '1,372' },
+          { label: 'N FAVORITE',  value: '1,186' },
+          { label: 'N UNDERDOG',  value: '187' },
           { label: 'MEDIAN TTE',  value: '102s' },
-          { label: 'FAVORITE',    value: '97s',  accent: '#4ec9ff' },
-          { label: 'UNDERDOG',    value: '161s', accent: '#ff8a1a' },
+          { label: 'FAV MEDIAN',  value: '97s',   accent: '#4ec9ff' },
+          { label: 'UND MEDIAN',  value: '161s',  accent: '#ff8a1a' },
           { label: 'UND/FAV',     value: '1.66×', accent: '#ff8a1a' },
           { label: 'KW P-VALUE',  value: '0.332' },
         ]}
@@ -52,10 +55,13 @@ export default function MarketSection() {
         title="Panel B — Post-Goal Overshoot by Event Type"
         annotation="97.75% of goals exhibit post-goal overshoot. Favorite goals paradoxically overshoot more than underdog goals — consistent with representativeness bias."
         stats={[
+          { label: 'N ALL',         value: '1,266' },
+          { label: 'N FAVORITE',    value: '1,114' },
+          { label: 'N UNDERDOG',    value: '152' },
           { label: 'ALL OVERSHOOT', value: '0.279' },
-          { label: 'FAV OVERSHOOT', value: '0.306', accent: '#4ec9ff' },
-          { label: 'UND OVERSHOOT', value: '0.089', accent: '#ff8a1a' },
-          { label: 'FAV/UND',       value: '3.44×', accent: '#ff8a1a' },
+          { label: 'FAV OVERSHOOT', value: '0.306',  accent: '#4ec9ff' },
+          { label: 'UND OVERSHOOT', value: '0.089',  accent: '#ff8a1a' },
+          { label: 'FAV/UND',       value: '3.44×',  accent: '#ff8a1a' },
           { label: '% POSITIVE',    value: '97.75%' },
         ]}
         caption={
@@ -76,11 +82,14 @@ export default function MarketSection() {
         title="Panel C — Calibration at Kickoff (Favorite-Longshot Bias Test)"
         annotation="χ² = 1.62, p = 0.805 — Betfair exchange prices at kickoff are well-calibrated. No favorite-longshot bias detected."
         stats={[
-          { label: 'CHI-SQUARED', value: '1.62' },
-          { label: 'P-VALUE',     value: '0.805', accent: '#4ade80' },
-          { label: 'BINS',        value: '5' },
           { label: 'N MATCHES',   value: '791' },
-          { label: 'VERDICT',     value: 'PASS', accent: '#4ade80' },
+          { label: 'BINS',        value: '5' },
+          { label: 'DEG FREEDOM', value: '4' },
+          { label: 'METHOD',      value: 'Hosmer-Lemeshow' },
+          { label: 'CHI-SQUARED', value: '1.62' },
+          { label: 'CRITICAL χ²', value: '9.49 (α=0.05)' },
+          { label: 'P-VALUE',     value: '0.805',      accent: '#4ade80' },
+          { label: 'VERDICT',     value: 'CALIBRATED', accent: '#4ade80' },
         ]}
         caption={
           'Kickoff prices are converted to implied win probabilities and compared against actual ' +

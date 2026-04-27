@@ -32,7 +32,7 @@ export default function ChartPanel({
       {annotation && (
         <p className="font-sans text-xs text-terminal-cyan font-medium mb-2 max-w-2xl">{annotation}</p>
       )}
-      <div className="mt-2 flex items-start gap-0">
+      <div className="mt-2 flex items-start gap-4">
         <div className="flex-1 min-w-0">{children}</div>
         {stats && stats.length > 0 && <StatsRail stats={stats} />}
       </div>

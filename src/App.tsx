@@ -1,5 +1,7 @@
 import Header from './components/layout/Header'
 import Nav from './components/layout/Nav'
+import StatusBar from './components/layout/StatusBar'
+import CommandBar from './components/layout/CommandBar'
 import FindingsGlance from './components/layout/FindingsGlance'
 import PoissonCalculator from './components/layout/PoissonCalculator'
 import DeltaSection from './components/sections/DeltaSection'
@@ -8,19 +10,20 @@ import GammaSection from './components/sections/GammaSection'
 import MarketSection from './components/sections/MarketSection'
 
 const NAV_SECTIONS = [
-  { id: 'calculator', label: 'Try the Model'   },
-  { id: 'delta',      label: 'Delta'           },
-  { id: 'theta',      label: 'Theta'           },
-  { id: 'gamma',      label: 'Gamma'           },
-  { id: 'market',     label: 'Market Behavior' },
+  { id: 'calculator', label: 'MODEL',    fKey: 'F1' },
+  { id: 'delta',      label: 'DELTA',    fKey: 'F2' },
+  { id: 'theta',      label: 'THETA',    fKey: 'F3' },
+  { id: 'gamma',      label: 'GAMMA',    fKey: 'F4' },
+  { id: 'market',     label: 'BEHAVIOR', fKey: 'F5' },
 ]
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-terminal-bg">
+    <div className="min-h-screen bg-terminal-bg pt-7 pb-6">
+      <StatusBar />
       <Header />
       <Nav sections={NAV_SECTIONS} />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <main className="w-full px-6 lg:px-8 pb-16">
         <FindingsGlance />
         <PoissonCalculator />
         <DeltaSection />
@@ -28,6 +31,7 @@ export default function App() {
         <GammaSection />
         <MarketSection />
       </main>
+      <CommandBar />
     </div>
   )
 }

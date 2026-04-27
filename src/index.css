@@ -30,7 +30,7 @@
 
 @layer utilities {
   .section-scroll-mt {
-    scroll-margin-top: 92px; /* status bar (28px) + nav (36px) + buffer */
+    scroll-margin-top: 80px; /* status bar (28px) + nav (~32px mobile / ~36px desktop) + buffer */
   }
 
   .tabular {

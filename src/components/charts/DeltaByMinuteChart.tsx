@@ -102,11 +102,12 @@ export default function DeltaByMinuteChart({ data }: Props) {
   return (
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 420 }}>
+        <p className="sm:hidden font-mono text-[9px] text-terminal-dim mb-1 text-center tracking-wide">← SWIPE TO EXPLORE →</p>
         <SeriesToggle series={SERIES} visible={visible} hovered={hovered} onToggle={toggle} onHover={setHovered} />
         <div className="h-[240px] sm:h-[340px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
-              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" />
               <XAxis dataKey="min_bin" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
                 label={{ value: 'MATCH MINUTE', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
               <YAxis domain={[0, 0.85]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
@@ -114,9 +115,11 @@ export default function DeltaByMinuteChart({ data }: Props) {
               <Tooltip content={tooltipContent} cursor={CURSOR_LINE} />
               <Line type="monotone" dataKey="favorite" stroke={C_FAVORITE} strokeWidth={1.6} opacity={dim('favorite')} hide={!visible.favorite}
                 dot={{ r: 3, fill: C_FAVORITE, strokeWidth: 0 }} activeDot={{ r: 4, strokeWidth: 0 }} connectNulls={false}
+                isAnimationActive={false}
                 onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)} />
               <Line type="monotone" dataKey="underdog" stroke={C_UNDERDOG} strokeWidth={1.6} opacity={dim('underdog')} hide={!visible.underdog}
                 dot={{ r: 3, fill: C_UNDERDOG, strokeWidth: 0 }} activeDot={{ r: 4, strokeWidth: 0 }} connectNulls={false}
+                isAnimationActive={false}
                 onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)} />
             </LineChart>
           </ResponsiveContainer>

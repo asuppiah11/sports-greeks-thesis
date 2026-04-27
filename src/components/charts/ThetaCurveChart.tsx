@@ -85,11 +85,12 @@ export default function ThetaCurveChart({ params }: Props) {
   return (
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 420 }}>
+        <p className="sm:hidden font-mono text-[9px] text-terminal-dim mb-1 text-center tracking-wide">← SWIPE TO EXPLORE →</p>
         <SeriesToggle series={SERIES} visible={visible} hovered={hovered} onToggle={toggle} onHover={setHovered} />
         <div className="h-[240px] sm:h-[340px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={curveData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
-              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+              <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" />
               <XAxis dataKey="t" type="number" domain={[0, 90]} ticks={[0, 15, 30, 45, 60, 75, 90]}
                 tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
                 label={{ value: 'MINUTES IN SCORELESS INTERVAL', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
@@ -97,9 +98,11 @@ export default function ThetaCurveChart({ params }: Props) {
                 label={{ value: 'P(GOAL/MIN)', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
               <Tooltip content={tooltipContent} cursor={CURSOR_LINE} />
               <Line type="monotone" dataKey="groupA" stroke={C_UNDERDOG} strokeWidth={1.6} opacity={dim('groupA')} hide={!visible.groupA}
-                dot={false} activeDot={{ r: 4, strokeWidth: 0 }} onMouseEnter={() => setHovered('groupA')} onMouseLeave={() => setHovered(null)} />
+                dot={false} activeDot={{ r: 4, strokeWidth: 0 }} isAnimationActive={false}
+                onMouseEnter={() => setHovered('groupA')} onMouseLeave={() => setHovered(null)} />
               <Line type="monotone" dataKey="groupB" stroke={C_FAVORITE} strokeWidth={1.6} strokeDasharray="6 3" opacity={dim('groupB')} hide={!visible.groupB}
-                dot={false} activeDot={{ r: 4, strokeWidth: 0 }} onMouseEnter={() => setHovered('groupB')} onMouseLeave={() => setHovered(null)} />
+                dot={false} activeDot={{ r: 4, strokeWidth: 0 }} isAnimationActive={false}
+                onMouseEnter={() => setHovered('groupB')} onMouseLeave={() => setHovered(null)} />
             </LineChart>
           </ResponsiveContainer>
         </div>

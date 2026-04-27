@@ -36,7 +36,7 @@ export default function GammaGradientChart({ data }: Props) {
       <div style={{ minWidth: 420 }} className="h-[240px] sm:h-[340px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
-            <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+            <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" />
             <XAxis dataKey="min_bin" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
               label={{ value: 'MATCH MINUTE', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
             <YAxis domain={[0, 0.8]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
@@ -49,9 +49,20 @@ export default function GammaGradientChart({ data }: Props) {
                 <circle key={`dot-${payload.min_bin}`} cx={cx} cy={cy}
                   r={payload.n < 10 ? 2.5 : 3.5} fill={C_UNDERDOG} opacity={payload.n < 10 ? 0.4 : 1} stroke="none" />
               )}
-              activeDot={{ r: 4, strokeWidth: 0 }} />
+              activeDot={{ r: 4, strokeWidth: 0 }} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
+      </div>
+      <div className="mt-2 flex items-center gap-4 font-mono text-[10px] text-terminal-dim">
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-4" style={{ borderTop: `1.6px solid ${C_UNDERDOG}` }} />
+          MEDIAN Δ (SCORE DIFF = 0)
+        </span>
+        <span className="text-terminal-border">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: C_UNDERDOG, opacity: 0.4 }} />
+          FADED DOT = N &lt; 10
+        </span>
       </div>
     </div>
   )

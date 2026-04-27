@@ -96,9 +96,11 @@ export default function ThetaAccelChart({ data }: Props) {
                 label={{ value: 'RATE (×10⁻³/MIN)', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
               <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
               <Bar dataKey="early" name="early" fill={C_DIM} radius={[0, 0, 0, 0]} maxBarSize={44}
-                hide={!visible.early} opacity={dim('early')} onMouseEnter={() => setHovered('early')} onMouseLeave={() => setHovered(null)} />
+                hide={!visible.early} opacity={dim('early')} isAnimationActive={false}
+                onMouseEnter={() => setHovered('early')} onMouseLeave={() => setHovered(null)} />
               <Bar dataKey="late" name="late" fill={C_UNDERDOG} radius={[0, 0, 0, 0]} maxBarSize={44}
-                hide={!visible.late} opacity={dim('late')} onMouseEnter={() => setHovered('late')} onMouseLeave={() => setHovered(null)} />
+                hide={!visible.late} opacity={dim('late')} isAnimationActive={false}
+                onMouseEnter={() => setHovered('late')} onMouseLeave={() => setHovered(null)} />
             </BarChart>
           </ResponsiveContainer>
         </div>

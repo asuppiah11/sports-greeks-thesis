@@ -70,9 +70,20 @@ export default function CalibrationChart({ data }: Props) {
             <Tooltip content={tooltipContent} cursor={{ strokeDasharray: '3 3', stroke: '#3a3a3a' }} />
             <ReferenceLine segment={[{ x: 0, y: 0 }, { x: 1, y: 1 }]} stroke={C_FAVORITE} strokeDasharray="5 4" strokeWidth={1}
               label={{ value: 'PERFECT CALIBRATION', position: 'insideTopLeft', fill: '#666666', fontSize: 9, fontFamily: 'IBM Plex Mono' }} />
-            <Scatter data={chartData} shape={<CalibrationDot />} />
+            <Scatter data={chartData} shape={<CalibrationDot />} isAnimationActive={false} />
           </ScatterChart>
         </ResponsiveContainer>
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-4 font-mono text-[10px] text-terminal-dim">
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: C_UNDERDOG }} />
+          ACTUAL RATE (±1.96·SE)
+        </span>
+        <span className="text-terminal-border">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block w-4" style={{ borderTop: `1.5px dashed ${C_FAVORITE}` }} />
+          PERFECT CALIBRATION
+        </span>
       </div>
     </div>
   )

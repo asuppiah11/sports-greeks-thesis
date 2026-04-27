@@ -11,7 +11,7 @@ import type { ReactionSpeedRow, OverreactionRow, CalibrationRow } from '../../ty
 
 export default function MarketSection() {
   return (
-    <section id="market" className="section-scroll-mt pt-8 pb-4">
+    <section id="market" className="section-scroll-mt pt-6 pb-2">
       <SectionHeader
         icon={Activity}
         title="Market Behavior — Efficiency, Speed, and Bias"
@@ -27,6 +27,13 @@ export default function MarketSection() {
         panelId="M.A"
         title="Panel A — Time-to-Equilibrium by League and Event Type"
         annotation="Markets reach post-goal equilibrium in a median of 102 seconds. No significant league differences (Kruskal-Wallis p = 0.332)."
+        stats={[
+          { label: 'MEDIAN TTE',  value: '102s' },
+          { label: 'FAVORITE',    value: '97s',  accent: '#4ec9ff' },
+          { label: 'UNDERDOG',    value: '161s', accent: '#ff8a1a' },
+          { label: 'UND/FAV',     value: '1.66×', accent: '#ff8a1a' },
+          { label: 'KW P-VALUE',  value: '0.332' },
+        ]}
         caption={
           'Time-to-equilibrium (TTE) is defined as the time from a goal until the price stabilizes ' +
           'within a 5% band of its final post-event level. ' +
@@ -44,6 +51,13 @@ export default function MarketSection() {
         panelId="M.B"
         title="Panel B — Post-Goal Overshoot by Event Type"
         annotation="97.75% of goals exhibit post-goal overshoot. Favorite goals paradoxically overshoot more than underdog goals — consistent with representativeness bias."
+        stats={[
+          { label: 'ALL OVERSHOOT', value: '0.279' },
+          { label: 'FAV OVERSHOOT', value: '0.306', accent: '#4ec9ff' },
+          { label: 'UND OVERSHOOT', value: '0.089', accent: '#ff8a1a' },
+          { label: 'FAV/UND',       value: '3.44×', accent: '#ff8a1a' },
+          { label: '% POSITIVE',    value: '97.75%' },
+        ]}
         caption={
           'Overshoot is defined as the maximum price deviation beyond the final post-event equilibrium, ' +
           'expressed as a fraction of the total price move. A value of 0.30 means the market moved ' +
@@ -61,6 +75,13 @@ export default function MarketSection() {
         panelId="M.C"
         title="Panel C — Calibration at Kickoff (Favorite-Longshot Bias Test)"
         annotation="χ² = 1.62, p = 0.805 — Betfair exchange prices at kickoff are well-calibrated. No favorite-longshot bias detected."
+        stats={[
+          { label: 'CHI-SQUARED', value: '1.62' },
+          { label: 'P-VALUE',     value: '0.805', accent: '#4ade80' },
+          { label: 'BINS',        value: '5' },
+          { label: 'N MATCHES',   value: '791' },
+          { label: 'VERDICT',     value: 'PASS', accent: '#4ade80' },
+        ]}
         caption={
           'Kickoff prices are converted to implied win probabilities and compared against actual ' +
           'match outcomes across five probability bins. Error bars show ±1.96×SE. ' +

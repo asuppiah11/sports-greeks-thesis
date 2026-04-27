@@ -48,12 +48,26 @@ export default function OverreactionChart({ data }: Props) {
             <YAxis domain={[0, 0.4]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
               label={{ value: 'MEDIAN OVERSHOOT', angle: -90, position: 'insideLeft', offset: 4, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
             <Tooltip content={tooltipContent} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
-            <Bar dataKey="median_overshoot" radius={[0,0,0,0]} maxBarSize={80}>
+            <Bar dataKey="median_overshoot" radius={[0,0,0,0]} maxBarSize={80} isAnimationActive={false}>
               {chartData.map((_, i) => <Cell key={i} fill={COLORS[i] ?? C_DIM} />)}
               <ErrorBar dataKey="error" width={6} strokeWidth={1.2} stroke="#8a8a8a" direction="y" />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-3 font-mono text-[10px] text-terminal-dim">
+        {[
+          { color: C_DIM,      label: 'ALL GOALS' },
+          { color: C_FAVORITE, label: 'FAVORITE SCORES' },
+          { color: C_UNDERDOG, label: 'UNDERDOG SCORES' },
+        ].map(({ color, label }) => (
+          <span key={label} className="flex items-center gap-1.5">
+            <span className="inline-block w-2.5 h-2.5 flex-shrink-0" style={{ background: color }} />
+            {label}
+          </span>
+        ))}
+        <span className="text-terminal-border">|</span>
+        <span>WHISKERS = 95% CI</span>
       </div>
     </div>
   )

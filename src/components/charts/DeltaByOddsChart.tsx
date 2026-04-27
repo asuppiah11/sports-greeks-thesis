@@ -36,7 +36,7 @@ export default function DeltaByOddsChart({ data }: Props) {
       <div style={{ minWidth: 420 }} className="h-[240px] sm:h-[340px]">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
-            <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" vertical={false} />
+            <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" />
             <XAxis dataKey="odds_bin" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
               label={{ value: 'PRE-GOAL DECIMAL ODDS', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />
             <YAxis domain={[0, 1.0]} tickFormatter={(v: number) => v.toFixed(2)} tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={false} width={36}
@@ -45,7 +45,7 @@ export default function DeltaByOddsChart({ data }: Props) {
             <Area type="monotone" dataKey="band_base" stackId="iqr" stroke="none" fill="transparent" fillOpacity={0} activeDot={false} legendType="none" isAnimationActive={false} />
             <Area type="monotone" dataKey="band_height" stackId="iqr" stroke="none" fill={C_UNDERDOG} fillOpacity={0.1} activeDot={false} legendType="none" isAnimationActive={false} />
             <Line type="monotone" dataKey="median_delta" name="Median Δ" stroke={C_UNDERDOG} strokeWidth={1.6}
-              dot={{ r: 3.5, fill: C_UNDERDOG, strokeWidth: 0 }} activeDot={{ r: 5, strokeWidth: 0 }} />
+              dot={{ r: 3.5, fill: C_UNDERDOG, strokeWidth: 0 }} activeDot={{ r: 5, strokeWidth: 0 }} isAnimationActive={false} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>

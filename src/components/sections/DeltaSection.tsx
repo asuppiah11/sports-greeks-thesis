@@ -9,7 +9,7 @@ import type { DeltaMinuteRow, DeltaOddsBinRow } from '../../types'
 
 export default function DeltaSection() {
   return (
-    <section id="delta" className="section-scroll-mt pt-8 pb-4">
+    <section id="delta" className="section-scroll-mt pt-6 pb-2">
       <SectionHeader
         icon={TrendingUp}
         title="Delta — Price Sensitivity to Goals"
@@ -25,6 +25,13 @@ export default function DeltaSection() {
         panelId="Δ.A"
         title="Panel A — Median Delta by Match Minute"
         annotation="Underdog goals produce 2.01× the price response of favorite goals, and this gap is stable across match minute."
+        stats={[
+          { label: 'UND MEDIAN Δ', value: '0.528', accent: '#ff8a1a' },
+          { label: 'FAV MEDIAN Δ', value: '0.262', accent: '#4ec9ff' },
+          { label: 'RATIO',        value: '2.01×',  accent: '#ff8a1a' },
+          { label: 'N GOALS',      value: '1,212' },
+          { label: 'P-VALUE',      value: '4.7×10⁻²¹' },
+        ]}
         caption={
           'Each point is the median absolute price change (Delta) for all goals scored in that 15-minute bin. ' +
           'Favorite goals (blue) rise gradually as the match progresses and late goals become more decisive. ' +
@@ -42,6 +49,13 @@ export default function DeltaSection() {
         panelId="Δ.B"
         title="Panel B — Median Delta by Pre-Goal Odds"
         annotation="Delta scales monotonically with pre-goal odds, from 0.15 for near-certainties to 0.66 for heavy underdogs."
+        stats={[
+          { label: 'ODDS 1.0–1.5', value: '0.153' },
+          { label: 'ODDS 3.0–5.0', value: '0.510' },
+          { label: 'ODDS 5.0–10+', value: '0.659', accent: '#ff8a1a' },
+          { label: 'RANGE',        value: '4.31×',  accent: '#ff8a1a' },
+          { label: 'N GOALS',      value: '1,212' },
+        ]}
         caption={
           'Goals are grouped by the scorer\'s decimal odds at the moment before the goal. ' +
           'The shaded band shows the interquartile range (25th–75th percentile), capturing spread within each bin. ' +

@@ -48,6 +48,7 @@ export default function GammaHeatmap({ data }: Props) {
 
   return (
     <div className="overflow-x-auto -mx-1">
+      <p className="sm:hidden font-mono text-[9px] text-terminal-dim mb-1.5 text-center tracking-wide">← SWIPE TO EXPLORE →</p>
       <div ref={containerRef} style={{ minWidth: 580 }} onClick={handleContainerClick}>
         {/* Column headers */}
         <div className="grid text-center" style={{ gridTemplateColumns: '72px repeat(7, 1fr)' }}>

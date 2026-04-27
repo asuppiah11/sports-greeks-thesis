@@ -91,6 +91,7 @@ export default function ReactionSpeedChart({ data }: Props) {
   return (
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 480 }}>
+        <p className="sm:hidden font-mono text-[9px] text-terminal-dim mb-1 text-center tracking-wide">← SWIPE TO EXPLORE →</p>
         <SeriesToggle series={SERIES} visible={visible} hovered={hovered} onToggle={toggle} onHover={setHovered} />
         <div className="h-[240px] sm:h-[340px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -104,11 +105,11 @@ export default function ReactionSpeedChart({ data }: Props) {
               <ReferenceLine y={102} stroke={C_UNDERDOG} strokeDasharray="4 3" strokeWidth={1}
                 label={{ value: 'MEDIAN 102s', position: 'right', fill: '#8a8a8a', fontSize: 9, fontFamily: 'IBM Plex Mono' }} />
               <Bar dataKey="all" fill={C_DIM} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.all} opacity={dim('all')}
-                onMouseEnter={() => setHovered('all')} onMouseLeave={() => setHovered(null)} />
+                isAnimationActive={false} onMouseEnter={() => setHovered('all')} onMouseLeave={() => setHovered(null)} />
               <Bar dataKey="favorite" fill={C_FAVORITE} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.favorite} opacity={dim('favorite')}
-                onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)} />
+                isAnimationActive={false} onMouseEnter={() => setHovered('favorite')} onMouseLeave={() => setHovered(null)} />
               <Bar dataKey="underdog" fill={C_UNDERDOG} radius={[0,0,0,0]} maxBarSize={20} hide={!visible.underdog} opacity={dim('underdog')}
-                onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)} />
+                isAnimationActive={false} onMouseEnter={() => setHovered('underdog')} onMouseLeave={() => setHovered(null)} />
             </BarChart>
           </ResponsiveContainer>
         </div>

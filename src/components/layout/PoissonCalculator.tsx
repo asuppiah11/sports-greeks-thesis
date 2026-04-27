@@ -29,9 +29,9 @@ interface ProbCardProps { label: string; value: number; accent?: string }
 
 function ProbCard({ label, value, accent = '#666666' }: ProbCardProps) {
   return (
-    <div className="border border-terminal-border bg-terminal-bg px-3 py-2.5 text-center">
-      <p className="font-mono text-[9px] text-terminal-dim mb-0.5 uppercase tracking-wide">{label}</p>
-      <p className="font-mono text-xl font-bold tabular leading-none" style={{ color: accent }}>
+    <div className="border border-terminal-border bg-terminal-bg px-2 sm:px-3 py-2 sm:py-2.5 text-center">
+      <p className="font-mono text-[8px] sm:text-[9px] text-terminal-dim mb-0.5 uppercase tracking-wide">{label}</p>
+      <p className="font-mono text-base sm:text-xl font-bold tabular leading-none" style={{ color: accent }}>
         {(value * 100).toFixed(1)}%
       </p>
     </div>
@@ -55,10 +55,10 @@ export default function PoissonCalculator() {
   const deltaBarWidth = Math.min(100, Math.abs(delta) * 250)
 
   return (
-    <section id="calculator" className="section-scroll-mt py-6 border-b border-terminal-border">
+    <section id="calculator" className="section-scroll-mt py-4 border-b border-terminal-border">
       <div className="max-w-3xl">
         {/* Header */}
-        <div className="flex items-start gap-2.5 mb-5">
+        <div className="flex items-start gap-2.5 mb-4">
           <div className="flex items-center justify-center w-7 h-7 border border-terminal-border bg-terminal-panel text-terminal-cyan flex-shrink-0">
             <Sliders size={13} strokeWidth={1.5} />
           </div>
@@ -71,10 +71,10 @@ export default function PoissonCalculator() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Controls */}
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
               <Slider label="λ Home" value={params.lambdaHome} min={0.3} max={3.5} step={0.05}
                 display={params.lambdaHome.toFixed(2)} onChange={set('lambdaHome')} />
               <Slider label="λ Away" value={params.lambdaAway} min={0.3} max={3.5} step={0.05}
@@ -82,7 +82,7 @@ export default function PoissonCalculator() {
             </div>
             <Slider label="Minute" value={params.minute} min={0} max={90} step={1}
               display={`${params.minute}'`} onChange={set('minute')} />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <Slider label="Home goals" value={params.homeGoals} min={0} max={5} step={1}
                 display={String(params.homeGoals)} onChange={set('homeGoals')} />
               <Slider label="Away goals" value={params.awayGoals} min={0} max={5} step={1}

@@ -9,8 +9,8 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ icon: Icon, title, summary }: SectionHeaderProps) {
   return (
-    <div className="mb-6">
-      <div className="flex items-center gap-2.5 mb-2">
+    <div className="mb-4">
+      <div className="flex items-center gap-2.5 mb-1.5">
         <div className="flex items-center justify-center w-7 h-7 border border-terminal-border bg-terminal-panel text-terminal-cyan">
           <Icon size={14} strokeWidth={1.5} />
         </div>

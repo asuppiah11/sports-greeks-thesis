@@ -1,6 +1,7 @@
 import { Zap } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import ChartPanel from '../ui/ChartPanel'
+import WorkedExample from '../ui/WorkedExample'
 import GammaHeatmap from '../charts/GammaHeatmap'
 import GammaGradientChart from '../charts/GammaGradientChart'
 import gammaHeatmap from '../../data/gammaHeatmap.json'
@@ -22,6 +23,24 @@ export default function GammaSection() {
           'a 75–90 minute equalizer triggers a 2.67× larger price move than an early goal.'
         }
       />
+
+      <WorkedExample>
+        <p>Two scenarios, same event:</p>
+        <p>
+          <span className="text-terminal-text font-medium">Scenario A</span> — A goal is scored at
+          minute 20 of a 0–0 match. The market's median price reaction is a Delta of 0.20.
+        </p>
+        <p>
+          <span className="text-terminal-text font-medium">Scenario B</span> — A goal is scored at
+          minute 85 of a 0–0 match. The market's median price reaction is a Delta of 0.53.
+        </p>
+        <p>
+          Same event (one goal), same score state (was tied), wildly different reaction. Gamma is
+          what captures this — it's the second-order observation that Delta itself depends on context.
+          The market isn't just sensitive in late tied matches; it's increasingly sensitive, which is
+          what makes those minutes the riskiest for anyone holding a position.
+        </p>
+      </WorkedExample>
 
       <ChartPanel
         panelId="Γ.A"

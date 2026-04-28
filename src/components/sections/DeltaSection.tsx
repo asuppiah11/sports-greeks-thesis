@@ -1,6 +1,7 @@
 import { TrendingUp } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import ChartPanel from '../ui/ChartPanel'
+import WorkedExample from '../ui/WorkedExample'
 import DeltaByMinuteChart from '../charts/DeltaByMinuteChart'
 import DeltaByOddsChart from '../charts/DeltaByOddsChart'
 import deltaByMinute from '../../data/deltaByMinute.json'
@@ -20,6 +21,24 @@ export default function DeltaSection() {
           'The panels below quantify this asymmetry across match time and pre-goal odds.'
         }
       />
+
+      <WorkedExample>
+        <p>
+          Imagine Manchester City (decimal odds 1.40, a heavy favorite) hosting Brighton
+          (decimal odds 8.0, a heavy underdog), tied 0–0 at the 82nd minute. Going in,
+          City has roughly a 55% chance of winning the match, Brighton 12%, and a draw
+          is around 33%.
+        </p>
+        <p>
+          Now Brighton scores. Our data predicts Brighton's win probability jumps from
+          about 12% to about 65% — a Delta of roughly +0.53. Had City scored instead,
+          City would have jumped from about 55% to about 81% — a Delta of roughly +0.26.
+        </p>
+        <p>
+          Same event (one goal), nearly identical match clock, dramatically different price
+          impact. That's the asymmetry this section quantifies.
+        </p>
+      </WorkedExample>
 
       <ChartPanel
         panelId="Δ.A"

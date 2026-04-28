@@ -1,6 +1,7 @@
 import { Clock } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import ChartPanel from '../ui/ChartPanel'
+import WorkedExample from '../ui/WorkedExample'
 import ThetaParamsTable from '../charts/ThetaParamsTable'
 import ThetaAccelChart from '../charts/ThetaAccelChart'
 import ThetaCurveChart from '../charts/ThetaCurveChart'
@@ -21,6 +22,20 @@ export default function ThetaSection() {
           'its final third, the market revises draw probability upward at an accelerating rate.'
         }
       />
+
+      <WorkedExample>
+        <p>
+          Imagine a Champions League knockout match, scoreless at the 75th minute. Both sides need
+          a goal to avoid extra time. Early in the match — say in the first 30 minutes — the implied
+          probability of a draw rises by roughly 0.18% per minute. By the 75th minute of the same
+          scoreless match, that rate has accelerated to about 0.81% per minute — over four times faster.
+        </p>
+        <p>
+          A "draw bet" placed at minute 25 and a "draw bet" placed at minute 75 look identical on
+          paper, but the second one is bleeding value four times as fast. Time isn't decaying your
+          position linearly; the decay itself accelerates.
+        </p>
+      </WorkedExample>
 
       <ChartPanel
         panelId="Θ.A"

@@ -5,12 +5,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   body {
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    line-height: 1.45;
+    line-height: 1.55;
     @apply bg-terminal-bg text-terminal-text antialiased;
   }
 

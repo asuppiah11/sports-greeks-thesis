@@ -30,13 +30,13 @@ export default function ChartPanel({
         <h3 className="font-sans text-sm font-semibold text-terminal-text">{title}</h3>
       </div>
       {annotation && (
-        <p className="font-sans text-xs text-terminal-cyan font-medium mb-2 max-w-2xl">{annotation}</p>
+        <p className="font-sans text-[14px] text-terminal-cyan font-medium mb-2 max-w-2xl">{annotation}</p>
       )}
       <div className="mt-2 flex items-start gap-4">
         <div className="flex-1 min-w-0">{children}</div>
         {stats && stats.length > 0 && <StatsRail stats={stats} />}
       </div>
-      <p className="mt-3 font-sans text-[11px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-2">
+      <p className="mt-3 font-sans text-[13px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-2">
         {caption}
       </p>
     </div>

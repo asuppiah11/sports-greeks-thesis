@@ -43,7 +43,7 @@ export default function Header() {
               <span className="text-terminal-cyan">SYRACUSE UNIVERSITY</span>
               {' '}· MAY 2026
             </p>
-            <p className="font-sans text-sm text-terminal-muted mb-4 leading-relaxed">
+            <p className="font-sans text-base text-terminal-muted mb-4 leading-relaxed">
               This dashboard presents empirical evidence that Betfair in-play soccer odds exhibit
               systematic sensitivity patterns — Delta, Theta, and Gamma — analogous to options
               pricing Greeks. Underdog goals move markets twice as much as favorite goals, draw
@@ -63,7 +63,7 @@ export default function Header() {
           <div className="hidden lg:flex lg:col-span-7 lg:pl-8 border-l border-terminal-border flex-col">
             {/* Panel header */}
             <div className="mb-3">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim" style={{ fontVariant: 'small-caps' }}>
+              <span className="font-mono text-[12px] uppercase tracking-widest text-terminal-dim" style={{ fontVariant: 'small-caps' }}>
                 What Each Greek Means
               </span>
             </div>
@@ -75,7 +75,7 @@ export default function Header() {
                 <div className="px-3 py-1.5 border-r border-terminal-border" />
                 {COL_HEADERS.map(h => (
                   <div key={h} className="px-3 py-1.5 border-r border-terminal-border last:border-r-0">
-                    <span className="font-mono text-[9px] text-terminal-dim uppercase tracking-widest">{h}</span>
+                    <span className="font-mono text-[12px] text-terminal-dim uppercase tracking-widest">{h}</span>
                   </div>
                 ))}
               </div>

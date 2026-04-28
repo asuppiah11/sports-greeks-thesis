@@ -39,7 +39,7 @@ export default function Nav({ sections }: NavProps) {
                   </span>
                 )}
                 <span className={[
-                  'font-sans text-[11px] sm:text-xs font-medium transition-colors',
+                  'font-sans text-[11px] sm:text-[10px] font-medium transition-colors',
                   isActive ? 'text-terminal-orange' : 'text-terminal-dim hover:text-terminal-text',
                 ].join(' ')}>
                   {label}

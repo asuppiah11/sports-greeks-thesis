@@ -16,7 +16,7 @@ export default function SectionHeader({ icon: Icon, title, summary }: SectionHea
         </div>
         <h2 className="font-sans text-base font-bold text-terminal-text">{title}</h2>
       </div>
-      <p className="font-sans text-xs text-terminal-muted max-w-2xl leading-relaxed">{summary}</p>
+      <p className="font-sans text-[14px] text-terminal-muted max-w-2xl leading-relaxed">{summary}</p>
     </div>
   )
 }

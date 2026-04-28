@@ -21,11 +21,11 @@ export default function StatCard({
         {/* Left: label + value */}
         <div className="flex-shrink-0 w-28 p-3 flex flex-col justify-center border-r border-terminal-border">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim leading-none">
+            <span className="font-mono text-[12px] uppercase tracking-widest text-terminal-dim leading-none">
               {sectionLabel ?? label}
             </span>
             {badge && (
-              <span className="font-mono text-[9px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 leading-none">
+              <span className="font-mono text-[12px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 leading-none">
                 {badge}
               </span>
             )}
@@ -37,7 +37,7 @@ export default function StatCard({
 
         {/* Right: description + footer */}
         <div className="flex-1 p-3 flex flex-col justify-between min-w-0">
-          <p className="font-sans text-[11px] text-terminal-muted leading-snug">{description}</p>
+          <p className="font-sans text-[13px] text-terminal-muted leading-snug">{description}</p>
           <div className="flex items-center justify-between mt-1.5">
             <span className="font-mono text-[10px] text-terminal-dim">{pValue}</span>
             <span className="font-mono text-[10px] text-terminal-dim opacity-0 group-hover:opacity-100 transition-opacity">

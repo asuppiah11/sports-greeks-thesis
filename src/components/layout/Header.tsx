@@ -93,13 +93,13 @@ export default function Header() {
                     </span>
                   </div>
                   <div className="px-3 py-2 border-r border-terminal-border flex items-center">
-                    <span className="font-mono text-[10px] text-terminal-muted leading-snug">{row.inFinance}</span>
+                    <span className="font-mono text-[12px] text-terminal-muted leading-snug">{row.inFinance}</span>
                   </div>
                   <div className="px-3 py-2 border-r border-terminal-border flex items-center">
-                    <span className="font-mono text-[10px] text-terminal-cyan leading-snug">{row.inThesis}</span>
+                    <span className="font-mono text-[12px] text-terminal-cyan leading-snug">{row.inThesis}</span>
                   </div>
                   <div className="px-3 py-2 flex items-center">
-                    <span className="font-sans text-[10px] text-terminal-muted leading-snug">{row.whyMatters}</span>
+                    <span className="font-sans text-[12px] text-terminal-muted leading-snug">{row.whyMatters}</span>
                   </div>
                 </div>
               ))}

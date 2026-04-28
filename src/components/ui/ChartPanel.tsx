@@ -27,7 +27,7 @@ export default function ChartPanel({
             {panelId}
           </span>
         )}
-        <h3 className="font-sans text-sm font-semibold text-terminal-text">{title}</h3>
+        <h3 className="font-sans text-[15px] font-semibold text-terminal-text">{title}</h3>
       </div>
       {annotation && (
         <p className="font-sans text-[14px] text-terminal-cyan font-medium mb-2 max-w-2xl">{annotation}</p>

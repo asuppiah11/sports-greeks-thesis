@@ -85,7 +85,7 @@ export default function AboutOverlay({ onClose }: Props) {
         {/* Modal header */}
         <div className="sticky top-0 bg-terminal-bg border-b border-terminal-border flex items-center justify-between px-5 py-3 z-10">
           <span className="font-mono text-[12px] uppercase tracking-widest text-terminal-orange">
-            About This Dashboard
+            Glossary
           </span>
           <button
             onClick={onClose}

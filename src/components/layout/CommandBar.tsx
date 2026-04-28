@@ -23,7 +23,7 @@ export default function CommandBar({ onAboutOpen }: Props) {
           onClick={onAboutOpen}
           className="font-mono text-[10px] text-terminal-dim hover:text-terminal-text transition-colors cursor-pointer bg-transparent border-0 p-0"
         >
-          <span className="text-terminal-muted">[?]</span> ABOUT
+          <span className="text-terminal-muted">[?]</span> GLOSSARY
         </button>
       </div>
 

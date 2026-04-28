@@ -1,28 +1,27 @@
 import { FileText } from 'lucide-react'
 
-const GLANCE_ROWS = [
+const GREEK_ROWS = [
   {
     sym: 'Δ',
-    name: 'DELTA ASYMMETRY',
-    val: '2.01×',
-    p: '10⁻²¹',
-    desc: 'Underdog goals produce 2× the market impact of equivalent favorite goals',
+    inFinance: 'Price change per unit move in the underlying',
+    inThesis: 'Win-probability change per goal scored',
+    whyMatters: 'Tells you how big a price jump to expect when something happens',
   },
   {
     sym: 'Θ',
-    name: 'THETA ACCELERATION',
-    val: '4.50×',
-    p: '10⁻¹⁰',
-    desc: 'Draw probability rises 4.5× faster in final-third scoreless intervals',
+    inFinance: 'Option value decay per unit of time',
+    inThesis: 'Draw-probability change per minute of scoreless play',
+    whyMatters: 'Tells you how fast time alone is eroding your position',
   },
   {
     sym: 'Γ',
-    name: 'GAMMA CONVEXITY',
-    val: '2.67×',
-    p: '10⁻³⁴',
-    desc: 'Late tied-match goals trigger the peak price response in the dataset',
+    inFinance: 'Rate of change of Delta itself',
+    inThesis: 'How much Delta shifts based on match state (time + score)',
+    whyMatters: 'Tells you when the market is most explosive — not just sensitive, but increasingly sensitive',
   },
 ]
+
+const COL_HEADERS = ['IN FINANCE', 'IN THIS THESIS', 'WHY IT MATTERS']
 
 export default function Header() {
   return (
@@ -60,36 +59,47 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Right — AT A GLANCE panel (lg+ only) */}
+          {/* Right — WHAT EACH GREEK MEANS panel (lg+ only) */}
           <div className="hidden lg:flex lg:col-span-7 lg:pl-8 border-l border-terminal-border flex-col">
-            {/* Panel header row */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim">
-                At a Glance
-              </span>
-              <span className="font-mono text-[9px] text-terminal-dim">
-                N=1,465 EVENTS · 791 MATCHES · 2021/22–2024/25
+            {/* Panel header */}
+            <div className="mb-3">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim" style={{ fontVariant: 'small-caps' }}>
+                What Each Greek Means
               </span>
             </div>
 
-            {/* Greek result rows */}
-            <div className="border border-terminal-border divide-y divide-terminal-border flex-1">
-              {GLANCE_ROWS.map(row => (
-                <div key={row.sym} className="flex items-center gap-5 px-4 py-2">
-                  <span className="font-mono text-[22px] font-bold text-terminal-orange w-7 flex-shrink-0 leading-none">
-                    {row.sym}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-mono text-[10px] text-terminal-dim uppercase tracking-wide mb-0.5">
-                      {row.name}
-                    </p>
-                    <p className="font-sans text-[11px] text-terminal-muted leading-snug">{row.desc}</p>
+            {/* Table */}
+            <div className="border border-terminal-border flex-1 flex flex-col">
+              {/* Column headers */}
+              <div className="grid border-b border-terminal-border" style={{ gridTemplateColumns: '60px 1fr 1fr 1fr' }}>
+                <div className="px-3 py-1.5 border-r border-terminal-border" />
+                {COL_HEADERS.map(h => (
+                  <div key={h} className="px-3 py-1.5 border-r border-terminal-border last:border-r-0">
+                    <span className="font-mono text-[9px] text-terminal-dim uppercase tracking-widest">{h}</span>
                   </div>
-                  <div className="flex-shrink-0 text-right">
-                    <p className="font-mono text-[22px] font-bold text-terminal-orange tabular-nums leading-none">
-                      {row.val}
-                    </p>
-                    <p className="font-mono text-[10px] text-terminal-dim mt-0.5">p ≈ {row.p}</p>
+                ))}
+              </div>
+
+              {/* Data rows */}
+              {GREEK_ROWS.map(row => (
+                <div
+                  key={row.sym}
+                  className="grid flex-1 border-b border-terminal-border last:border-b-0"
+                  style={{ gridTemplateColumns: '60px 1fr 1fr 1fr' }}
+                >
+                  <div className="flex items-center justify-center border-r border-terminal-border py-2">
+                    <span className="font-mono text-[22px] font-bold text-terminal-orange leading-none">
+                      {row.sym}
+                    </span>
+                  </div>
+                  <div className="px-3 py-2 border-r border-terminal-border flex items-center">
+                    <span className="font-mono text-[10px] text-terminal-muted leading-snug">{row.inFinance}</span>
+                  </div>
+                  <div className="px-3 py-2 border-r border-terminal-border flex items-center">
+                    <span className="font-mono text-[10px] text-terminal-cyan leading-snug">{row.inThesis}</span>
+                  </div>
+                  <div className="px-3 py-2 flex items-center">
+                    <span className="font-sans text-[10px] text-terminal-muted leading-snug">{row.whyMatters}</span>
                   </div>
                 </div>
               ))}

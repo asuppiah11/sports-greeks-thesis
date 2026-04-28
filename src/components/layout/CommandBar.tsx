@@ -1,4 +1,8 @@
-export default function CommandBar() {
+interface Props {
+  onAboutOpen: () => void
+}
+
+export default function CommandBar({ onAboutOpen }: Props) {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 h-6 flex items-center px-4 sm:px-6 bg-terminal-bg border-t border-terminal-border">
       {/* Shortcuts — hidden on mobile except ABOUT */}
@@ -15,14 +19,17 @@ export default function CommandBar() {
         <span className="hidden sm:inline font-mono text-[10px] text-terminal-dim">
           <span className="text-terminal-muted">[E]</span> EXPORT
         </span>
-        <span className="font-mono text-[10px] text-terminal-dim">
+        <button
+          onClick={onAboutOpen}
+          className="font-mono text-[10px] text-terminal-dim hover:text-terminal-text transition-colors cursor-pointer bg-transparent border-0 p-0"
+        >
           <span className="text-terminal-muted">[?]</span> ABOUT
-        </span>
+        </button>
       </div>
 
       {/* Build stamp — hidden on mobile to avoid crowding */}
       <div className="flex-shrink-0 ml-auto">
-        <span className="hidden sm:inline font-mono text-[10px] text-terminal-dim">BUILD 2026.04.27</span>
+        <span className="hidden sm:inline font-mono text-[10px] text-terminal-dim">BUILD 2026.04.28</span>
       </div>
     </div>
   )

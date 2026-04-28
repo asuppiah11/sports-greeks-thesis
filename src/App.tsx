@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import Header from './components/layout/Header'
 import Nav from './components/layout/Nav'
 import StatusBar from './components/layout/StatusBar'
 import CommandBar from './components/layout/CommandBar'
+import AboutOverlay from './components/layout/AboutOverlay'
 import ModelSection from './components/layout/ModelSection'
 import DeltaSection from './components/sections/DeltaSection'
 import ThetaSection from './components/sections/ThetaSection'
@@ -17,6 +19,8 @@ const NAV_SECTIONS = [
 ]
 
 export default function App() {
+  const [showAbout, setShowAbout] = useState(false)
+
   return (
     <div className="min-h-screen bg-terminal-bg pt-7 pb-6">
       <StatusBar />
@@ -29,7 +33,8 @@ export default function App() {
         <GammaSection />
         <MarketSection />
       </main>
-      <CommandBar />
+      <CommandBar onAboutOpen={() => setShowAbout(true)} />
+      {showAbout && <AboutOverlay onClose={() => setShowAbout(false)} />}
     </div>
   )
 }

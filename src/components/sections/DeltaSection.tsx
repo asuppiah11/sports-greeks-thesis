@@ -43,7 +43,7 @@ export default function DeltaSection() {
       <ChartPanel
         panelId="Δ.A"
         title="Panel A — Median Delta by Match Minute"
-        annotation="Underdog goals produce 2.01× the price response of favorite goals, and this gap is stable across match minute."
+        annotation="When an underdog scores, the market re-prices roughly twice as aggressively as when a favorite scores — and this gap holds at every point in the match."
         stats={[
           { label: 'N FAV GOALS',   value: '1,049' },
           { label: 'N UND GOALS',   value: '163' },
@@ -71,7 +71,7 @@ export default function DeltaSection() {
       <ChartPanel
         panelId="Δ.B"
         title="Panel B — Median Delta by Pre-Goal Odds"
-        annotation="Delta scales monotonically with pre-goal odds, from 0.15 for near-certainties to 0.66 for heavy underdogs."
+        annotation="The longer the odds on the scorer, the bigger the price move. Heavy underdogs (5–10 odds) shift the market four times harder than near-certainties (1.0–1.5 odds)."
         stats={[
           { label: 'N GOALS',      value: '1,212' },
           { label: 'ODDS 1.0–1.5', value: '0.153  (n=369)' },

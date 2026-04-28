@@ -45,7 +45,7 @@ export default function GammaSection() {
       <ChartPanel
         panelId="Γ.A"
         title="Panel A — Delta by Minute Bin and Score Differential"
-        annotation="Peak market explosiveness: median Δ = 0.531 at 75–90 min in tied matches."
+        annotation="The market is most reactive when a late goal could still flip the result. Tied matches between minutes 75 and 90 show 2.67× the price response of equivalent goals earlier in the match."
         stats={[
           { label: 'EARLY n',   value: '283' },
           { label: 'LATE n',    value: '220' },

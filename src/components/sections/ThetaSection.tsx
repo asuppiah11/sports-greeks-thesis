@@ -64,7 +64,7 @@ export default function ThetaSection() {
       <ChartPanel
         panelId="Θ.B"
         title="Panel B — Early vs. Final-Third Theta (Wilcoxon Signed-Rank)"
-        annotation="Draw probability rises 4.50× faster in the final third of pure 0-0 matches, and 3.34× faster in pre-first-goal segments (both p ≈ 0)."
+        annotation="Time decay isn't linear. Draw probability rises 4.5× faster in the final 30 minutes of a goalless match than in the opening 30 minutes — the pressure compounds."
         stats={[
           { label: 'GRP A n',      value: '73' },
           { label: 'GRP B n',      value: '386' },

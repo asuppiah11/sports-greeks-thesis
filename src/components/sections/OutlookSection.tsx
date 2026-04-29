@@ -2,6 +2,7 @@ import { Globe, Zap, Compass, FlaskConical } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import ChartPanel from '../ui/ChartPanel'
 import ApplicationsWorkflow from '../charts/ApplicationsWorkflow'
+import PredictionMarketsMatrix from '../charts/PredictionMarketsMatrix'
 
 const SPORTS_ROWS = [
   {
@@ -126,56 +127,8 @@ export default function OutlookSection() {
         <div className="flex-1 border-t border-terminal-border" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2">
-        <ChartPanel
-          panelId="O.E"
-          title="Panel E — Political Prediction Markets"
-          className="mb-0"
-        >
-          <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-            Polymarket and Kalshi have liquid election and political-event markets with the structural
-            ingredients: discrete information shocks (debates, polls, withdrawals), hard expiry
-            (election day or resolution date), and continuous pricing. Theta is the time-pressure
-            analog. Soft-information embedding should be even more pronounced than in sports.
-          </p>
-        </ChartPanel>
-
-        <ChartPanel
-          panelId="O.F"
-          title="Panel F — Climate and Weather Markets"
-          className="mb-0"
-        >
-          <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-            Hurricane track contracts, temperature-threshold contracts, and seasonal precipitation
-            markets all have hard expiries and discrete shocks (storm formation, threshold crossings).
-            Theta is the dominant Greek; Delta arrives in concentrated event clusters.
-          </p>
-        </ChartPanel>
-
-        <ChartPanel
-          panelId="O.G"
-          title="Panel G — Pharma Equity around FDA Decisions"
-          className="mb-0"
-        >
-          <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-            Stock prices around PDUFA dates exhibit jump-diffusion with a hard expiry — structurally
-            closer to standard options pricing than to soccer. The framework's contribution here is
-            the empirical methodology for measuring Delta around discrete information events.
-          </p>
-        </ChartPanel>
-
-        <ChartPanel
-          panelId="O.H"
-          title="Panel H — Insurance Catastrophe Bonds"
-          className="mb-0"
-        >
-          <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-            Cat bonds price the probability of trigger events (earthquakes above magnitude X,
-            hurricanes making landfall in zone Y) within a defined coverage period. Delta on news
-            of an approaching storm, Theta as the season progresses, Gamma in the peak of
-            hurricane season.
-          </p>
-        </ChartPanel>
+      <div className="border border-terminal-border bg-terminal-panel p-4 mb-2">
+        <PredictionMarketsMatrix />
       </div>
 
       {/* ── Research Frontier ── */}

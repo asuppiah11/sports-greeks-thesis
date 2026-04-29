@@ -1,4 +1,4 @@
-import { Globe, Zap, Compass } from 'lucide-react'
+import { Globe, Zap, Compass, FlaskConical } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import ChartPanel from '../ui/ChartPanel'
 
@@ -261,7 +261,71 @@ export default function OutlookSection() {
         </ChartPanel>
       </div>
 
-      {/* Phase 4: Research Frontier + Closer */}
+      {/* ── Research Frontier ── */}
+      <SectionHeader
+        icon={FlaskConical}
+        title="Research Frontier — What's Next"
+        summary={
+          'Three immediate research extensions follow naturally from the framework. ' +
+          'Each is constrained by data or computation rather than theory.'
+        }
+      />
+
+      <ChartPanel
+        panelId="O.I"
+        title="Panel I — Sub-Second Resolution"
+        annotation="Move from minute-level to sub-second event-study estimates."
+      >
+        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
+          The Betfair Stream API captures price updates at sub-second frequency, but the current
+          analysis aggregates to minute resolution for tractability. Sub-second resolution would
+          sharpen the time-to-equilibrium and overshoot estimates and reveal the within-event
+          price-discovery microstructure in detail. The barrier is computational, not
+          data-availability — the raw stream is already collected.
+        </p>
+      </ChartPanel>
+
+      <ChartPanel
+        panelId="O.J"
+        title="Panel J — Match-Statistic Integration"
+        annotation="Disentangle Bayesian updating from tactical-momentum signals."
+      >
+        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
+          Adding real-time match statistics — shot counts, possession percentages, expected goals
+          (xG), tactical lineup changes — as controls in the Greek regressions would identify how
+          much of empirical Delta comes from pure score-based Bayesian updating versus from soft
+          information about match quality and momentum. The residual Delta after these controls
+          would be the "pure surprise" component.
+        </p>
+      </ChartPanel>
+
+      <ChartPanel
+        panelId="O.K"
+        title="Panel K — Cross-Sport Replication"
+        annotation="Test whether the Greek structure is universal or soccer-specific."
+      >
+        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
+          The cleanest test of the framework's generality is replicating the three core hypotheses
+          on another sport with similar structure. Hockey is the obvious first port (direct
+          structural match); cricket would test the framework against a sport where the Theta
+          analog is already in production use (DLS).
+        </p>
+      </ChartPanel>
+
+      {/* ── Closer ── */}
+      <p className="font-sans text-[14px] text-terminal-dim leading-[1.55] mt-6 mb-4">
+        The central claim of this work is that soccer betting markets behave like options markets —
+        and that the language of derivatives theory captures their structure with quantitative
+        precision. The Greeks were never about soccer or stocks specifically; they were about the
+        geometry of how prices respond to time, to events, and to the changing context of both.
+        Wherever that geometry exists, the framework applies.
+      </p>
+
+      <div className="flex justify-end pb-6">
+        <span className="font-mono text-[10px] text-terminal-dim tracking-wide">
+          END · OUTLOOK · GRKS&lt;GO&gt; · BUILD 2026.04.28
+        </span>
+      </div>
     </section>
   )
 }

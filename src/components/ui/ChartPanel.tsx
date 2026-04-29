@@ -5,10 +5,11 @@ import type { StatRow } from './StatsRail'
 interface ChartPanelProps {
   title: string
   annotation?: string
-  caption: ReactNode
+  caption?: ReactNode
   children: ReactNode
   panelId?: string
   stats?: StatRow[]
+  className?: string
 }
 
 export default function ChartPanel({
@@ -18,9 +19,10 @@ export default function ChartPanel({
   children,
   panelId,
   stats,
+  className,
 }: ChartPanelProps) {
   return (
-    <div className="border border-terminal-border bg-terminal-panel p-4 mb-2">
+    <div className={`border border-terminal-border bg-terminal-panel p-4 mb-2${className ? ` ${className}` : ''}`}>
       <div className="flex items-start gap-2 mb-1">
         {panelId && (
           <span className="font-mono text-[9px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 flex-shrink-0 mt-0.5">
@@ -36,9 +38,11 @@ export default function ChartPanel({
         <div className="flex-1 min-w-0">{children}</div>
         {stats && stats.length > 0 && <StatsRail stats={stats} />}
       </div>
-      <p className="mt-3 font-sans text-[13px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-2">
-        {caption}
-      </p>
+      {caption && (
+        <p className="mt-3 font-sans text-[13px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-2">
+          {caption}
+        </p>
+      )}
     </div>
   )
 }

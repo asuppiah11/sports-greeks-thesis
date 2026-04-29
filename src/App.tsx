@@ -9,6 +9,7 @@ import DeltaSection from './components/sections/DeltaSection'
 import ThetaSection from './components/sections/ThetaSection'
 import GammaSection from './components/sections/GammaSection'
 import MarketSection from './components/sections/MarketSection'
+import OutlookSection from './components/sections/OutlookSection'
 
 const NAV_SECTIONS = [
   { id: 'calculator', label: 'MODEL',    fKey: 'F1' },
@@ -16,6 +17,7 @@ const NAV_SECTIONS = [
   { id: 'theta',      label: 'THETA',    fKey: 'F3' },
   { id: 'gamma',      label: 'GAMMA',    fKey: 'F4' },
   { id: 'market',     label: 'BEHAVIOR', fKey: 'F5' },
+  { id: 'outlook',    label: 'OUTLOOK',  fKey: 'F6' },
 ]
 
 export default function App() {
@@ -32,6 +34,7 @@ export default function App() {
         <ThetaSection />
         <GammaSection />
         <MarketSection />
+        <OutlookSection />
       </main>
       <CommandBar onAboutOpen={() => setShowAbout(true)} />
       {showAbout && <AboutOverlay onClose={() => setShowAbout(false)} />}

@@ -75,20 +75,14 @@ export default function OutlookSection() {
       <SectionHeader
         icon={Globe}
         title="Outlook — Applications, Extensions, and Research Frontier"
-        summary={
-          'The framework developed in this thesis is not specific to soccer. The Greeks — Delta, Theta, ' +
-          'Gamma — exist wherever a market prices a time-bounded uncertain outcome that responds to discrete ' +
-          'information shocks. This section translates the empirical findings into concrete applications, ' +
-          'identifies the sports where the framework should port directly, and flags the structural reasons ' +
-          'it would fail elsewhere.'
-        }
+        summary="The framework is not specific to soccer — it applies wherever a market prices a time-bounded outcome with discrete information shocks. This tab maps the empirical findings to applications, extensions, and open questions."
       />
 
       {/* ── Applications ── */}
       <SectionHeader
         icon={Zap}
         title="Applications — Where the Findings Activate"
-        summary="Each finding activates at a specific point in a match's lifecycle. Click any card to jump to its anchor panel."
+        summary="Each finding activates at a specific point in the match lifecycle — click any card to jump to its anchor panel."
       />
 
       <div className="border border-terminal-border bg-terminal-panel p-4 mb-2">
@@ -99,12 +93,7 @@ export default function OutlookSection() {
       <SectionHeader
         icon={Compass}
         title="Extensions — Other Sports and Domains"
-        summary={
-          'The Greeks framework should port directly to any market with a hard time horizon, discrete ' +
-          'information shocks, and continuous price discovery. The fit varies by sport based on scoring ' +
-          'frequency, time structure, and event discreteness — and one sport is a documented poor fit, ' +
-          'which strengthens rather than weakens the framework.'
-        }
+        summary="The framework ports to any market with discrete shocks and a hard time horizon — the tables below map six sports by structural fit and four adjacent markets by Greek profile."
       />
 
       {/* Sub-section: Sports structural fit */}
@@ -194,7 +183,7 @@ export default function OutlookSection() {
 
       <div className="flex justify-end pb-6">
         <span className="font-mono text-[10px] text-terminal-dim tracking-wide">
-          END · OUTLOOK · GRKS&lt;GO&gt; · BUILD 2026.04.28
+          END · OUTLOOK · GRKS&lt;GO&gt; · BUILD 2026.04.30
         </span>
       </div>
     </section>

@@ -1,8 +1,28 @@
 import { Globe, Zap, Compass, FlaskConical } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
-import ChartPanel from '../ui/ChartPanel'
 import ApplicationsWorkflow from '../charts/ApplicationsWorkflow'
 import PredictionMarketsMatrix from '../charts/PredictionMarketsMatrix'
+
+const FRONTIER_ROWS = [
+  {
+    id: 'O.I',
+    extension: 'SUB-SECOND RESOLUTION',
+    constraint: 'Computational, not data',
+    payoff: 'Sharper TTE/overshoot estimates; reveals within-event price-discovery microstructure',
+  },
+  {
+    id: 'O.J',
+    extension: 'MATCH-STATISTIC INTEGRATION',
+    constraint: 'Data alignment / xG access',
+    payoff: 'Decomposes Δ into Bayesian-update vs. soft-information components',
+  },
+  {
+    id: 'O.K',
+    extension: 'CROSS-SPORT REPLICATION',
+    constraint: 'Sport-specific data deals',
+    payoff: 'Tests universality of the Greek structure (hockey first, then cricket)',
+  },
+]
 
 const SPORTS_ROWS = [
   {
@@ -135,52 +155,33 @@ export default function OutlookSection() {
       <SectionHeader
         icon={FlaskConical}
         title="Research Frontier — What's Next"
-        summary={
-          'Three immediate research extensions follow naturally from the framework. ' +
-          'Each is constrained by data or computation rather than theory.'
-        }
+        summary="Three immediate extensions, each constrained by data or computation rather than theory."
       />
 
-      <ChartPanel
-        panelId="O.I"
-        title="Panel I — Sub-Second Resolution"
-        annotation="Move from minute-level to sub-second event-study estimates."
-      >
-        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-          The Betfair Stream API captures price updates at sub-second frequency, but the current
-          analysis aggregates to minute resolution for tractability. Sub-second resolution would
-          sharpen the time-to-equilibrium and overshoot estimates and reveal the within-event
-          price-discovery microstructure in detail. The barrier is computational, not
-          data-availability — the raw stream is already collected.
-        </p>
-      </ChartPanel>
-
-      <ChartPanel
-        panelId="O.J"
-        title="Panel J — Match-Statistic Integration"
-        annotation="Disentangle Bayesian updating from tactical-momentum signals."
-      >
-        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-          Adding real-time match statistics — shot counts, possession percentages, expected goals
-          (xG), tactical lineup changes — as controls in the Greek regressions would identify how
-          much of empirical Delta comes from pure score-based Bayesian updating versus from soft
-          information about match quality and momentum. The residual Delta after these controls
-          would be the "pure surprise" component.
-        </p>
-      </ChartPanel>
-
-      <ChartPanel
-        panelId="O.K"
-        title="Panel K — Cross-Sport Replication"
-        annotation="Test whether the Greek structure is universal or soccer-specific."
-      >
-        <p className="font-sans text-[14px] text-terminal-muted leading-[1.55]">
-          The cleanest test of the framework's generality is replicating the three core hypotheses
-          on another sport with similar structure. Hockey is the obvious first port (direct
-          structural match); cricket would test the framework against a sport where the Theta
-          analog is already in production use (DLS).
-        </p>
-      </ChartPanel>
+      <div className="border border-terminal-border bg-terminal-panel p-4 mb-2">
+        <div className="overflow-x-auto">
+          <table className="w-full font-mono text-[11px] border-collapse">
+            <thead>
+              <tr className="border-b border-terminal-border">
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-10">ID</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-52">Extension</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-44">Constraint</th>
+                <th className="text-left py-2 text-[9px] uppercase tracking-wide text-terminal-dim">Expected Payoff</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-terminal-border">
+              {FRONTIER_ROWS.map(row => (
+                <tr key={row.id} className="hover:bg-terminal-bg transition-colors">
+                  <td className="py-2.5 pr-4 font-semibold text-terminal-orange">{row.id}</td>
+                  <td className="py-2.5 pr-4 text-terminal-text font-semibold">{row.extension}</td>
+                  <td className="py-2.5 pr-4 text-terminal-dim text-[10px]">{row.constraint}</td>
+                  <td className="py-2.5 text-terminal-muted text-[10px] leading-snug">{row.payoff}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* ── Closer ── */}
       <p className="font-sans text-[14px] text-terminal-dim leading-[1.55] mt-6 mb-4">

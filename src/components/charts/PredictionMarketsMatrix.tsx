@@ -1,9 +1,17 @@
+interface GreekWeights {
+  delta: number
+  theta: number
+  gamma: number
+}
+
 interface CellDef {
   id: string
   market: string
   sub: string
-  events: [string, string]
+  events: string[]
   dominant: string
+  weights: GreekWeights
+  examples: string[]
 }
 
 // [row][col]: [FAST,DISCRETE] [FAST,CONTINUOUS] / [SLOW,DISCRETE] [SLOW,CONTINUOUS]
@@ -15,6 +23,8 @@ const CELLS: [[CellDef, CellDef], [CellDef, CellDef]] = [
       sub: 'Polymarket / Kalshi',
       events: ['debate, withdrawal', 'poll shifts, endorsements'],
       dominant: 'Δ',
+      weights: { delta: 80, theta: 20, gamma: 10 },
+      examples: ['TRUMP-2024-NOM', 'FED-CUT-DEC', 'UK-PM-2026'],
     },
     {
       id: 'O.G',
@@ -22,6 +32,8 @@ const CELLS: [[CellDef, CellDef], [CellDef, CellDef]] = [
       sub: 'PDUFA dates',
       events: ['trial readouts', 'approval decisions'],
       dominant: 'Δ + Γ',
+      weights: { delta: 60, theta: 30, gamma: 50 },
+      examples: ['BIIB ADUHELM', 'MRNA RSV-VAX', 'NVAX 2025-Q3'],
     },
   ],
   [
@@ -31,6 +43,8 @@ const CELLS: [[CellDef, CellDef], [CellDef, CellDef]] = [
       sub: 'Hurricane / earthquake',
       events: ['hurricane landfall', 'earthquake trigger'],
       dominant: 'Δ + Θ',
+      weights: { delta: 70, theta: 40, gamma: 20 },
+      examples: ['RESIDENTIAL-RE-2024', 'FLORIDA-WIND-CAT3+'],
     },
     {
       id: 'O.F',
@@ -38,15 +52,36 @@ const CELLS: [[CellDef, CellDef], [CellDef, CellDef]] = [
       sub: 'Seasonal markets',
       events: ['seasonal precip', 'temp thresholds'],
       dominant: 'Θ',
+      weights: { delta: 30, theta: 70, gamma: 20 },
+      examples: ['NYC-TEMP-DEC', 'MIA-PRECIP-Q1', 'ENSO-2026'],
     },
   ],
 ]
 
+function GreekBar({ label, value }: { label: string; value: number }) {
+  const filled = Math.round(value / 10)
+  return (
+    <div className="flex items-center gap-1.5">
+      <span className="font-mono text-[9px] text-terminal-cyan w-3 leading-none shrink-0">{label}</span>
+      <div className="flex gap-px flex-1">
+        {Array.from({ length: 10 }, (_, i) => (
+          <div
+            key={i}
+            className="flex-1 h-[4px]"
+            style={{ background: i < filled ? '#4ec9ff' : '#27272a' }}
+          />
+        ))}
+      </div>
+      <span className="font-mono text-[9px] text-terminal-dim w-7 text-right leading-none shrink-0">{value}%</span>
+    </div>
+  )
+}
+
 function QuadrantCell({ cell }: { cell: CellDef }) {
   return (
-    <div className="bg-terminal-panel p-3 flex flex-col min-h-[180px]">
+    <div className="bg-terminal-panel p-2.5 flex flex-col gap-1.5">
       {/* Badge + market name */}
-      <div className="flex items-start gap-2 mb-2">
+      <div className="flex items-start gap-2">
         <span className="font-mono text-[10px] text-terminal-orange border border-terminal-orange/40 bg-[#1a1208] px-1 py-0.5 leading-none flex-shrink-0 mt-px">
           {cell.id}
         </span>
@@ -54,25 +89,45 @@ function QuadrantCell({ cell }: { cell: CellDef }) {
           <p className="font-mono text-[11px] font-semibold text-terminal-text uppercase tracking-wide leading-tight">
             {cell.market}
           </p>
-          <p className="font-mono text-[10px] text-terminal-dim mt-0.5">{cell.sub}</p>
+          <p className="font-mono text-[9px] text-terminal-dim mt-0.5">{cell.sub}</p>
         </div>
       </div>
 
-      {/* Separator */}
-      <div className="border-t border-terminal-border mb-2" />
+      <div className="border-t border-terminal-border" />
 
-      {/* Trigger events */}
-      <div className="flex-1 space-y-1">
+      {/* Greek profile bars */}
+      <div>
+        <p className="font-mono text-[7px] uppercase tracking-widest text-terminal-dim mb-1">GREEK PROFILE</p>
+        <div className="space-y-1">
+          <GreekBar label="Δ" value={cell.weights.delta} />
+          <GreekBar label="Θ" value={cell.weights.theta} />
+          <GreekBar label="Γ" value={cell.weights.gamma} />
+        </div>
+      </div>
+
+      <div className="border-t border-terminal-border" />
+
+      {/* Event types */}
+      <div>
+        <p className="font-mono text-[7px] uppercase tracking-widest text-terminal-dim mb-0.5">EVENT TYPES</p>
         {cell.events.map(ev => (
-          <p key={ev} className="font-mono text-[10px] text-terminal-muted leading-snug">
-            · {ev}
-          </p>
+          <p key={ev} className="font-mono text-[9px] text-terminal-muted leading-snug">· {ev}</p>
         ))}
       </div>
 
-      {/* Dominant Greek — the thesis line */}
-      <div className="border-t border-terminal-border mt-2 pt-2">
-        <span className="font-mono text-[10px] text-terminal-dim uppercase tracking-wide">dominant: </span>
+      {/* Examples */}
+      <div>
+        <p className="font-mono text-[7px] uppercase tracking-widest text-terminal-dim mb-0.5">EXAMPLES</p>
+        <div className="flex flex-wrap gap-x-2 gap-y-0.5">
+          {cell.examples.map(ex => (
+            <span key={ex} className="font-mono text-[8px] text-terminal-dim leading-none">{ex}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Dominant Greek */}
+      <div className="border-t border-terminal-border pt-1 mt-auto">
+        <span className="font-mono text-[9px] text-terminal-dim uppercase tracking-wide">dominant: </span>
         <span className="font-mono text-[13px] font-bold text-terminal-cyan">{cell.dominant}</span>
       </div>
     </div>
@@ -84,7 +139,7 @@ export default function PredictionMarketsMatrix() {
     <div>
       {/* Axis title row */}
       <div className="flex items-center mb-1">
-        <div className="w-28 flex-shrink-0" />
+        <div className="w-24 flex-shrink-0" />
         <p className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest">
           Information Shock Structure
         </p>
@@ -93,28 +148,30 @@ export default function PredictionMarketsMatrix() {
       {/* Main grid */}
       <div className="flex">
         {/* Y-axis labels */}
-        <div className="flex-shrink-0 w-28 flex flex-col">
+        <div className="flex-shrink-0 w-24 flex flex-col">
           {/* Y-axis title */}
-          <div className="h-8 flex items-end pb-1">
-            <p className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest"
-               style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+          <div className="h-7 flex items-end pb-1">
+            <p
+              className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest"
+              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+            >
               Resolution Horizon
             </p>
           </div>
           {/* FAST label */}
           <div className="flex-1 flex items-center justify-end pr-3 border-t border-terminal-border">
             <div className="text-right">
-              <p className="font-mono text-[10px] text-terminal-muted uppercase tracking-wide font-semibold">FAST ↑</p>
-              <p className="font-mono text-[9px] text-terminal-dim">event-driven</p>
-              <p className="font-mono text-[9px] text-terminal-dim">days–weeks</p>
+              <p className="font-mono text-[9px] text-terminal-muted uppercase tracking-wide font-semibold">FAST ↑</p>
+              <p className="font-mono text-[8px] text-terminal-dim">event-driven</p>
+              <p className="font-mono text-[8px] text-terminal-dim">days–weeks</p>
             </div>
           </div>
           {/* SLOW label */}
           <div className="flex-1 flex items-center justify-end pr-3 border-t border-terminal-border">
             <div className="text-right">
-              <p className="font-mono text-[10px] text-terminal-muted uppercase tracking-wide font-semibold">SLOW ↓</p>
-              <p className="font-mono text-[9px] text-terminal-dim">accumulating</p>
-              <p className="font-mono text-[9px] text-terminal-dim">months</p>
+              <p className="font-mono text-[9px] text-terminal-muted uppercase tracking-wide font-semibold">SLOW ↓</p>
+              <p className="font-mono text-[8px] text-terminal-dim">accumulating</p>
+              <p className="font-mono text-[8px] text-terminal-dim">months</p>
             </div>
           </div>
         </div>
@@ -123,13 +180,13 @@ export default function PredictionMarketsMatrix() {
         <div className="flex-1">
           {/* Column headers */}
           <div className="grid grid-cols-2 gap-px bg-terminal-border border border-terminal-border border-b-0">
-            <div className="bg-terminal-bg px-3 py-1.5">
-              <p className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest">
+            <div className="bg-terminal-bg px-3 py-1">
+              <p className="font-mono text-[9px] text-terminal-dim uppercase tracking-widest">
                 ← Discrete <span className="text-terminal-dim/60">(named events)</span>
               </p>
             </div>
-            <div className="bg-terminal-bg px-3 py-1.5 border-l-0">
-              <p className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest">
+            <div className="bg-terminal-bg px-3 py-1">
+              <p className="font-mono text-[9px] text-terminal-dim uppercase tracking-widest">
                 Continuous → <span className="text-terminal-dim/60">(rolling data)</span>
               </p>
             </div>

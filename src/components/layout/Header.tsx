@@ -1,4 +1,4 @@
-import { FileText } from 'lucide-react'
+import { FileText, Download } from 'lucide-react'
 
 const GREEK_ROWS = [
   {
@@ -51,11 +51,14 @@ export default function Header() {
               trigger the sharpest price responses in the dataset.
             </p>
             <a
-              href="#"
-              className="inline-flex items-center gap-2 font-mono text-xs text-terminal-muted hover:text-terminal-text border border-terminal-border hover:border-terminal-muted px-3 py-1.5 transition-colors"
+              href="/thesis.pdf"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 font-mono text-xs text-terminal-muted hover:text-terminal-text border border-terminal-border hover:border-terminal-cyan px-3 py-1.5 transition-colors"
             >
               <FileText size={13} />
-              FULL THESIS PDF (COMING SOON)
+              FULL THESIS PDF
+              <Download size={11} />
             </a>
           </div>
 

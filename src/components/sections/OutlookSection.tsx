@@ -28,42 +28,42 @@ const SPORTS_ROWS = [
   {
     sport: 'HOCKEY (NHL)',
     fit: 'DIRECT PORT',
-    fitColor: '#4ec9ff',
+    fitColor: '#84cc16',
     argument: 'Same structure as soccer: discrete low-frequency goals, hard 60-minute clock, OT extension, similar liquidity profile on Betfair. Methodology should transfer with only a goal-rate recalibration.',
     anchor: 'λ ≈ 6 goals/game (vs 2.7 soccer)',
   },
   {
     sport: 'CRICKET (T20/ODI)',
     fit: 'STRONGER FIT',
-    fitColor: '#4ade80',
+    fitColor: '#22c55e',
     argument: 'Wickets are textbook discrete shocks. The Duckworth-Lewis-Stern adjustment is essentially a Theta computation already in production use. The over-by-over structure provides a natural discrete-time grid.',
     anchor: 'DLS = production-grade Theta',
   },
   {
     sport: 'NFL',
     fit: 'GOOD FIT',
-    fitColor: '#4ec9ff',
+    fitColor: '#eab308',
     argument: 'Points come in discrete increments (3/6/7/8), creating a richer Delta distribution than soccer\'s binary +1. Hard 4-quarter clock + OT. Existing Win Probability models (nflfastR) lack the Greeks decomposition.',
     anchor: 'Adds Γ to existing WPA framework',
   },
   {
     sport: 'TENNIS',
     fit: 'EDGE CASE',
-    fitColor: '#ff8a1a',
+    fitColor: '#fb923c',
     argument: 'No clock, so traditional Theta is undefined. But match progression (sets, games, break points) provides a substitute decay axis. Break-point Delta would be enormous and worth measuring.',
     anchor: 'Break-point Δ as anchor event',
   },
   {
     sport: 'ESPORTS (DOTA/CS2)',
     fit: 'COMMERCIAL FIT',
-    fitColor: '#4ec9ff',
+    fitColor: '#f97316',
     argument: 'Explicit timers, discrete game-changing events (Roshan kills, bomb plants, objective takes), liquid in-play markets, younger demographic. Structurally the closest sport to financial options markets.',
     anchor: 'Closest to options structure',
   },
   {
     sport: 'BASKETBALL',
     fit: 'POOR FIT',
-    fitColor: '#f87171',
+    fitColor: '#ef4444',
     argument: 'Possessions are too high-frequency (~100/game) and scoring is near-continuous. Per-event Delta becomes too small for the framework to have analytical bite. Documented limitation, not a flaw of the methodology.',
     anchor: 'Why a sport CAN\'T fit',
   },
@@ -107,18 +107,29 @@ export default function OutlookSection() {
         <div className="overflow-x-auto">
           <table className="w-full font-mono text-[11px] border-collapse">
             <thead>
-              <tr className="border-b border-terminal-border">
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-36">Sport</th>
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-32">Fit</th>
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim">Structural Argument</th>
-                <th className="text-left py-2 text-[9px] uppercase tracking-wide text-terminal-dim w-44">Key Anchor</th>
+              <tr className="border-b border-[#27272a]">
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-36">Sport</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-32">Fit</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8]">Structural Argument</th>
+                <th className="text-left py-2 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-44">Key Anchor</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-terminal-border">
+            <tbody className="divide-y divide-[#27272a]">
               {SPORTS_ROWS.map(row => (
                 <tr key={row.sport} className="hover:bg-terminal-bg transition-colors">
                   <td className="py-2.5 pr-4 text-terminal-text font-semibold whitespace-nowrap">{row.sport}</td>
-                  <td className="py-2.5 pr-4 font-semibold whitespace-nowrap" style={{ color: row.fitColor }}>{row.fit}</td>
+                  <td className="py-2.5 pr-4 whitespace-nowrap">
+                    <span
+                      className="font-mono text-[9px] font-semibold uppercase tracking-wide px-1.5 py-0.5 leading-none"
+                      style={{
+                        color: row.fitColor,
+                        border: `1px solid ${row.fitColor}4d`,
+                        background: `${row.fitColor}1a`,
+                      }}
+                    >
+                      {row.fit}
+                    </span>
+                  </td>
                   <td className="py-2.5 pr-4 text-terminal-muted text-[10px] leading-snug">{row.argument}</td>
                   <td className="py-2.5 text-terminal-dim text-[10px] leading-snug">{row.anchor}</td>
                 </tr>
@@ -151,14 +162,14 @@ export default function OutlookSection() {
         <div className="overflow-x-auto">
           <table className="w-full font-mono text-[11px] border-collapse">
             <thead>
-              <tr className="border-b border-terminal-border">
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-10">ID</th>
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-52">Extension</th>
-                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim w-44">Constraint</th>
-                <th className="text-left py-2 text-[9px] uppercase tracking-wide text-terminal-dim">Expected Payoff</th>
+              <tr className="border-b border-[#27272a]">
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-10">ID</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-52">Extension</th>
+                <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-44">Constraint</th>
+                <th className="text-left py-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">Expected Payoff</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-terminal-border">
+            <tbody className="divide-y divide-[#27272a]">
               {FRONTIER_ROWS.map(row => (
                 <tr key={row.id} className="hover:bg-terminal-bg transition-colors">
                   <td className="py-2.5 pr-4 font-semibold text-terminal-orange">{row.id}</td>

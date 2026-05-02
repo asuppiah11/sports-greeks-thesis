@@ -121,14 +121,14 @@ function NodeCard({ node, hovered, onEnter, onLeave }: {
         {/* Anchor */}
         <text
           x={node.x + 6} y={node.y + 34}
-          fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#666666"
+          fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#a1a1aa"
         >
           {node.anchor}
         </text>
         {/* Action */}
         <text
           x={node.x + 6} y={node.y + 49}
-          fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#8a8a8a"
+          fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#b4b4bc"
         >
           ▶ {node.action}
         </text>
@@ -168,7 +168,7 @@ export default function ApplicationsWorkflow() {
                 x={stage.x} y={TL_Y + 16}
                 textAnchor="middle"
                 fontFamily="IBM Plex Mono, monospace"
-                fontSize="8" fill="#666666"
+                fontSize="8" fill="#a1a1aa"
               >
                 {stage.label}
               </text>
@@ -177,7 +177,7 @@ export default function ApplicationsWorkflow() {
                   x={stage.x} y={TL_Y + 27}
                   textAnchor="middle"
                   fontFamily="IBM Plex Mono, monospace"
-                  fontSize="7.5" fill="#444444"
+                  fontSize="7.5" fill="#a1a1aa"
                 >
                   {stage.sub}
                 </text>

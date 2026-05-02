@@ -22,17 +22,17 @@ export default function ThetaParamsTable({ data }: Props) {
     <div className="overflow-x-auto">
       <table className="w-full font-mono text-[11px] border-collapse">
         <thead>
-          <tr className="border-b border-terminal-border">
-            <th className="text-left py-2 pr-3 text-[9px] uppercase tracking-wide text-terminal-dim w-6">GRP</th>
-            <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-terminal-dim">DESCRIPTION</th>
-            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">N</th>
-            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">a</th>
-            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">SE(a)</th>
-            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-terminal-dim">b</th>
-            <th className="text-right py-2 pl-2 text-[9px] uppercase tracking-wide text-terminal-dim">SE(b)</th>
+          <tr className="border-b border-[#27272a]">
+            <th className="text-left py-2 pr-3 text-[9px] uppercase tracking-wide text-[#d4d4d8] w-6">GRP</th>
+            <th className="text-left py-2 pr-4 text-[9px] uppercase tracking-wide text-[#d4d4d8]">DESCRIPTION</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">N</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">a</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">SE(a)</th>
+            <th className="text-right py-2 px-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">b</th>
+            <th className="text-right py-2 pl-2 text-[9px] uppercase tracking-wide text-[#d4d4d8]">SE(b)</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-terminal-border">
+        <tbody className="divide-y divide-[#27272a]">
           {rows.map(row => {
             const meta = GROUP_META[row.group]
             return (

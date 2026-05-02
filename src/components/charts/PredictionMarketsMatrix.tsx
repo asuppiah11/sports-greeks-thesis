@@ -150,12 +150,9 @@ export default function PredictionMarketsMatrix() {
         {/* Y-axis labels */}
         <div className="flex-shrink-0 w-24 flex flex-col">
           {/* Y-axis title */}
-          <div className="h-7 flex items-end pb-1">
-            <p
-              className="font-mono text-[10px] text-terminal-dim uppercase tracking-widest"
-              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-            >
-              Resolution Horizon
+          <div className="h-7 flex items-end justify-end pb-1">
+            <p className="font-mono text-[8px] text-terminal-dim uppercase tracking-wide text-right leading-none">
+              RESOLUTION<br />HORIZON
             </p>
           </div>
           {/* FAST label */}

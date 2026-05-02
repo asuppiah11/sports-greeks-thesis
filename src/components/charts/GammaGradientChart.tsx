@@ -35,7 +35,7 @@ export default function GammaGradientChart({ data }: Props) {
     <div className="overflow-x-auto -mx-1">
       <div style={{ minWidth: 420 }} className="h-[240px] sm:h-[340px]">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData} margin={{ top: 8, right: 20, bottom: 24, left: 8 }}>
+          <LineChart data={chartData} margin={{ top: 24, right: 20, bottom: 24, left: 8 }}>
             <CartesianGrid stroke={GRID_STROKE} strokeDasharray="0" />
             <XAxis dataKey="min_bin" tick={TICK_STYLE} tickLine={{ stroke: '#2a2a2a' }} axisLine={AXIS_LINE}
               label={{ value: 'MATCH MINUTE', position: 'insideBottom', offset: -14, fontSize: 9, fill: LABEL_FILL, fontFamily: 'IBM Plex Mono' }} />

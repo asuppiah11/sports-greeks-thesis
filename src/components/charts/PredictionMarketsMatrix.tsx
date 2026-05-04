@@ -109,18 +109,18 @@ function QuadrantCell({ cell }: { cell: CellDef }) {
 
       {/* Event types */}
       <div>
-        <p className="font-mono text-[7px] uppercase tracking-widest text-terminal-dim mb-0.5">EVENT TYPES</p>
+        <p className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim mb-0.5">EVENT TYPES</p>
         {cell.events.map(ev => (
-          <p key={ev} className="font-mono text-[9px] text-terminal-muted leading-snug">· {ev}</p>
+          <p key={ev} className="font-mono text-[11px] text-terminal-muted leading-snug">· {ev}</p>
         ))}
       </div>
 
       {/* Examples */}
       <div>
-        <p className="font-mono text-[7px] uppercase tracking-widest text-terminal-dim mb-0.5">EXAMPLES</p>
+        <p className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim mb-0.5">EXAMPLES</p>
         <div className="flex flex-wrap gap-x-2 gap-y-0.5">
           {cell.examples.map(ex => (
-            <span key={ex} className="font-mono text-[8px] text-terminal-dim leading-none">{ex}</span>
+            <span key={ex} className="font-mono text-[10px] text-terminal-dim leading-snug">{ex}</span>
           ))}
         </div>
       </div>

@@ -137,6 +137,31 @@ function QuadrantCell({ cell }: { cell: CellDef }) {
 export default function PredictionMarketsMatrix() {
   return (
     <div>
+      {/* Greek profile explainer */}
+      <div className="mb-3 bg-terminal-bg border border-terminal-border px-3 py-2.5 font-mono">
+        <p className="text-[7px] uppercase tracking-widest text-terminal-dim mb-1.5">WHAT AM I LOOKING AT?</p>
+        <p className="font-sans text-[11px] text-terminal-muted leading-relaxed mb-2">
+          Each market's Greek profile shows the relative weight of Δ, Θ, and Γ in driving its price moves:
+        </p>
+        <div className="space-y-0.5 text-[9px] mb-2">
+          <p>
+            <span className="text-terminal-cyan font-semibold">Δ Delta</span>
+            <span className="text-terminal-dim"> — sensitivity to the underlying state (poll numbers, storm track, trial enrollment)</span>
+          </p>
+          <p>
+            <span className="text-terminal-cyan font-semibold">Θ Theta</span>
+            <span className="text-terminal-dim"> — time decay; how much value erodes per unit time as resolution approaches</span>
+          </p>
+          <p>
+            <span className="text-terminal-cyan font-semibold">Γ Gamma</span>
+            <span className="text-terminal-dim"> — convexity; how sharply Delta itself reacts to new information shocks</span>
+          </p>
+        </div>
+        <p className="text-[9px] text-terminal-dim leading-snug border-t border-terminal-border pt-2">
+          Percentages are heuristic weights, not optimization outputs. They don't sum to 100 because a market can be simultaneously sensitive to multiple Greeks (e.g., a storm-track market is both Δ-driven and Γ-driven near landfall).
+        </p>
+      </div>
+
       {/* Axis title row */}
       <div className="flex items-center mb-1">
         <div className="w-24 flex-shrink-0" />
@@ -200,9 +225,14 @@ export default function PredictionMarketsMatrix() {
         </div>
       </div>
 
-      {/* Caption */}
+      {/* Caption + legend */}
       <p className="mt-3 font-sans text-[13px] text-terminal-dim leading-relaxed border-t border-terminal-border pt-2">
         Each quadrant maps to a different Greek profile. Markets in the upper-left (discrete + fast) are closest to soccer; markets in the lower-right (continuous + slow) are closest to traditional options.
+      </p>
+      <p className="mt-1.5 font-mono text-[9px] text-terminal-dim tracking-widest">
+        <span className="text-terminal-cyan">Δ</span> DELTA &nbsp;·&nbsp;
+        <span className="text-terminal-cyan">Θ</span> THETA &nbsp;·&nbsp;
+        <span className="text-terminal-cyan">Γ</span> GAMMA
       </p>
     </div>
   )

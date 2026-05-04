@@ -8,10 +8,10 @@ function fmt(v: number | null, decimals = 5): string {
 }
 
 const GROUP_META: Record<string, { shortName: string; description: string }> = {
-  A_pure_00:        { shortName: 'A', description: 'Pure 0-0 (scoreless throughout)' },
-  B_pre_first_goal: { shortName: 'B', description: 'Pre-first-goal segment' },
-  C_level_score:    { shortName: 'C', description: 'Level score (≥1 goal each)' },
-  Poisson:          { shortName: '—', description: 'Poisson baseline' },
+  A_pure_00:        { shortName: 'A', description: 'Pure 0-0 (matches that ended scoreless from KO to FT)' },
+  B_pre_first_goal: { shortName: 'B', description: 'Pre-first-goal segment (time elapsed in any match before the first goal is scored — segment ends the moment either side scores)' },
+  C_level_score:    { shortName: 'C', description: 'Level score (tied after both sides have scored at least once — e.g., 1-1, 2-2, 3-3)' },
+  Poisson:          { shortName: '—', description: 'Poisson baseline (theoretical reference: constant goal-arrival rate, no momentum / no time pressure)' },
 }
 
 export default function ThetaParamsTable({ data }: Props) {
@@ -52,7 +52,7 @@ export default function ThetaParamsTable({ data }: Props) {
           <tfoot>
             <tr className="border-t border-terminal-border">
               <td className="py-2 pr-3 text-terminal-dim text-[10px]">—</td>
-              <td className="py-2 pr-4 text-terminal-dim text-[10px]">Poisson baseline</td>
+              <td className="py-2 pr-4 text-terminal-dim text-[10px]">Poisson baseline (constant goal-arrival rate, theoretical reference)</td>
               <td colSpan={5} className="py-2 px-2 text-right text-terminal-muted text-[10px]">
                 λ = {poisson.lambda?.toFixed(3)}
               </td>

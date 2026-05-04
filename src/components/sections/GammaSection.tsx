@@ -86,12 +86,17 @@ export default function GammaSection() {
         ]}
         caption={
           'This panel isolates the score_diff = 0 row from the heatmap and plots it as a time series. ' +
-          'The near-linear rise through 75–90 min followed by a jump in the 90+ bin captures the ' +
-          '"Gamma gradient": market sensitivity to a goal in a tied match increases as time pressure mounts. ' +
-          'The 90+ bin (n=46) reflects stoppage-time goals — high Delta but also high variance. ' +
-          'The dashed reference line marks the analytical peak at 75–90 min.'
+          'The near-linear rise through 75–90 min captures the "Gamma gradient": market sensitivity to a ' +
+          'goal in a tied match increases as time pressure mounts. ' +
+          'The reference line marks the analytical peak at 75–90 min, excluding the stoppage-time bin.'
         }
       >
+        <div className="mb-3 pl-2.5 pr-2 py-1.5 font-mono text-[10px] flex items-start gap-1.5 border-l-[3px] border-l-terminal-orange/50">
+          <span className="text-terminal-orange text-[9px] uppercase tracking-widest flex-shrink-0 mt-px font-semibold">NOTE</span>
+          <span className="text-terminal-dim leading-snug">
+            The 90+ bin (stoppage time, n=46) is shown as a dashed/faded segment and excluded from the analytical peak — high variance due to small sample size.
+          </span>
+        </div>
         <GammaGradientChart data={data} />
       </ChartPanel>
     </section>

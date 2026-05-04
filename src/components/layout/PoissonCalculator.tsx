@@ -2,6 +2,12 @@ import { useState, useDeferredValue } from 'react'
 import { Sliders } from 'lucide-react'
 import { computeMatchProbs, computeDeltaHome } from '../../lib/poisson'
 
+const LAMBDA_COPY =
+  'Λ (lambda) is the expected goals rate — the average goals a team would score over 90 minutes ' +
+  'given their attacking strength vs. the opponent\'s defense. A typical Premier League team sits ' +
+  'around 1.4–1.6. This is the same idea as xG (expected goals), expressed as a per-match rate ' +
+  'that feeds the Poisson process.'
+
 const DEFAULTS = {
   lambdaHome: 1.5, lambdaAway: 1.2,
   minute: 45, homeGoals: 0, awayGoals: 0,
@@ -22,6 +28,28 @@ function Slider({ label, value, min, max, step, display, onChange }: SliderProps
       <input type="range" className="calc-slider" min={min} max={max} step={step} value={value}
         onChange={e => onChange(parseFloat(e.target.value))} />
     </div>
+  )
+}
+
+function LambdaInfo() {
+  const [open, setOpen] = useState(false)
+  return (
+    <span className="relative inline-flex items-center">
+      <button
+        className="w-3.5 h-3.5 rounded-full border border-terminal-dim/60 font-mono text-[8px] font-bold text-terminal-dim flex items-center justify-center hover:border-terminal-cyan hover:text-terminal-cyan transition-colors leading-none"
+        onClick={() => setOpen(v => !v)}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        aria-label="What is lambda?"
+      >
+        ?
+      </button>
+      {open && (
+        <div className="absolute left-0 top-5 z-50 w-72 bg-terminal-panel border border-terminal-border p-2.5 shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
+          <p className="font-sans text-[11px] text-terminal-muted leading-relaxed">{LAMBDA_COPY}</p>
+        </div>
+      )}
+    </span>
   )
 }
 
@@ -73,11 +101,17 @@ export default function PoissonCalculator() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {/* Controls */}
         <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-3">
-            <Slider label="λ Home" value={params.lambdaHome} min={0.3} max={3.5} step={0.05}
-              display={params.lambdaHome.toFixed(2)} onChange={set('lambdaHome')} />
-            <Slider label="λ Away" value={params.lambdaAway} min={0.3} max={3.5} step={0.05}
-              display={params.lambdaAway.toFixed(2)} onChange={set('lambdaAway')} />
+          <div>
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-terminal-dim">λ PARAMETERS</span>
+              <LambdaInfo />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Slider label="λ Home" value={params.lambdaHome} min={0.3} max={3.5} step={0.05}
+                display={params.lambdaHome.toFixed(2)} onChange={set('lambdaHome')} />
+              <Slider label="λ Away" value={params.lambdaAway} min={0.3} max={3.5} step={0.05}
+                display={params.lambdaAway.toFixed(2)} onChange={set('lambdaAway')} />
+            </div>
           </div>
           <Slider label="Minute" value={params.minute} min={0} max={90} step={1}
             display={`${params.minute}'`} onChange={set('minute')} />
@@ -133,6 +167,10 @@ export default function PoissonCalculator() {
           </div>
         </div>
       </div>
+
+      <p className="mt-3 font-mono text-[9px] text-terminal-dim border-t border-terminal-border pt-2 leading-snug">
+        <span className="text-terminal-cyan font-semibold">λ NOTE —</span>{' '}{LAMBDA_COPY}
+      </p>
     </div>
   )
 }
